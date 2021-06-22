@@ -1,0 +1,113 @@
+.logo
+{
+  margin-left: 135px;
+  list-style: none;
+  color: #fff;
+}
+
+.nome {
+  color: #fff;
+  margin-left: 60px;
+  width: 300px;
+  list-style: none;
+}
+
+.fa {
+  position: relative;
+  display: table-cell;
+  width: 45px;
+  height: 36px;
+  text-align: center;
+  top:10px; 
+  font-size:20px;
+  margin-left: 10px;
+  }
+
+.main-menu:hover, nav.main-menu.expanded 
+{
+width:350px;
+}
+
+.main-menu 
+{
+background:#022B3A;
+position:fixed;
+top:0;
+bottom:0;
+height:100%;
+left:0;
+width:55px;
+overflow:hidden;
+transition:width .2s linear;
+transform:translateZ(0) scale(1,1);
+opacity:1;
+text-align: start;
+}
+
+.main-menu li>a 
+{
+position:relative;
+width:350px;
+display:table;
+color:#E1E5F2;
+font-size: 14px;
+text-decoration:none;
+transform:translateZ(0) scale(1,1);
+transition:all .14s linear;
+padding: 10px;
+}
+
+.main-menu .nav-text  
+{
+margin-left: 55px;
+vertical-align:middle;
+top: -7;
+position: relative;
+}
+
+nav ul,nav li 
+{
+outline:0;
+margin:0;
+padding:0;
+}
+
+/* Darker element side menu Start*/
+.darkerli
+{
+background-color:#1F7A8C;
+}
+
+.darkerlishadow
+{
+background-color:#1F7A8C;
+text-transform:capitalize;  
+-webkit-box-shadow: inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+-moz-box-shadow:    inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+box-shadow:         inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+}
+
+
+.darkerlishadowdown
+{
+background-color:#1F7A8C;
+text-transform:capitalize;  
+-webkit-box-shadow: inset 0px -4px 5px -4px rgba(50, 50, 50, 0.55);
+-moz-box-shadow:    inset 0px -4px 5px -4px rgba(50, 50, 50, 0.55);
+box-shadow:         inset 0px -4px 5px -4px rgba(50, 50, 50, 0.55);
+}
+
+.main-menu li:hover>a,
+nav.main-menu li.active>a,
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus,
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:hover,
+.dropdown-menu>.active>a:focus,
+.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,
+.dashboard-page nav.dashboard-menu ul li.active a 
+{
+color:#fff;
+background-color:#011D27;
+text-shadow: 0px 0px 0px; 
+}

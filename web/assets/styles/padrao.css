@@ -1,0 +1,22 @@
+h1, h2, h3, h4, h5 {
+    font-family: 'Archivo Narrow', sans-serif;
+}
+
+p, button, input, label, body, a, span {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.titulo {
+    text-align: left;
+    padding: 30px;
+}
+
+header img {
+    margin-top: 20px;
+    width: 80px;
+    margin-left: 90%;
+}
+
+body {
+    overflow-x: hidden;
+}

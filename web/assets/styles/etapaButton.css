@@ -1,0 +1,131 @@
+.toggle{
+    --uiToggleSize: var(--toggleSize, 1.25rem);
+    --uiToggleBorderWidth: var(--toggleBorderWidth, 2px);
+    --uiToggleColor: var(--toggleColor, #222);
+  
+    display: var(--toggleDisplay, inline-flex);
+    position: relative;
+  }
+  
+  .toggle__input{
+    width: var(--uiToggleSize);
+    height: var(--uiToggleSize);
+    opacity: 0;
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+  }
+
+  .toggle__label{
+    display: inline-flex;
+    min-height: var(--uiToggleSize);
+    padding-left: calc(var(--uiToggleSize) + var(--toggleIndent, .4em));
+  }
+  
+  .toggle__input:not(:disabled) ~ .toggle__label{
+    cursor: pointer;
+  }
+  
+  .toggle__label::after{
+    content: "";
+    box-sizing: border-box;  
+    width: 1em;
+    height: 1em;
+    font-size: var(--uiToggleSize); /* 1 */
+  
+    background-color: transparent;
+    border: var(--uiToggleBorderWidth) solid var(--uiToggleColor);
+  
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
+  
+  .toggle__input:checked ~ .toggle__label::after{
+    background-color: var(--uiToggleColor);
+  }
+  
+  
+  .toggle__label::before{
+    content: "";
+    width: 0;
+    height: 0;
+    font-size: var(--uiToggleSize); /* 1 */
+  
+    border-left-width: 0;
+    border-bottom-width: 0;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-color: var(--toggleArrowColor, #fff);
+  
+    position: absolute;
+    top: .5428em;
+    left: .25em;
+    z-index: 3;
+  
+    transform-origin: left top;
+    transform: rotate(-40deg) skew(10deg);
+  }
+  
+  .toggle__input:checked ~ .toggle__label::before{
+    --uiToggleArrowWidth: var(--toggleArrowWidth, 2px);
+  
+    width: .4em;
+    height: .2em;
+    border-left-width: var(--uiToggleArrowWidth);
+    border-bottom-width: var(--uiToggleArrowWidth);
+  }
+  
+  .toggle__input:disabled ~ .toggle__label{
+    opacity: var(--toggleOpacityDisabled, .24);
+    cursor: var(--toggleCursorDisabled, not-allowed);
+    user-select: none;
+  }
+  
+  .toggle__label::after{
+    border-radius: var(--toggleBorderRadius, 2px);
+  }
+ 
+  .toggle__input:not(:disabled) ~ .toggle__label::before{
+    will-change: width, height;
+    opacity: 0;
+  }
+  
+  .toggle__input:not(:disabled):checked ~ .toggle__label::before{
+    opacity: 1;
+    transition: opacity .1s ease-out .25s, width .1s ease-out .5s, height .2s ease-out .3s;
+  }
+  
+  .toggle__input:not(:disabled) ~ .toggle__label::after{
+    will-change: background-color;
+    transition: background-color .2s ease-out;
+  }
+  
+  .page{
+    box-sizing: border-box;
+    max-width: 45rem;
+    padding: 2.75rem 2rem 2.5rem;
+    margin: auto;
+    
+    background-color: #fff;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12), 0 1px 5px 0 rgba(0, 0, 0, .2);
+    border-radius: 2px;
+  }
+  
+  .page__section{
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: 700;
+  }
+  
+  .page__section:nth-child(n+2){
+    margin-top: 3rem;
+  }
+
+  .page__toggle {
+      margin-top: 10px;
+  }
+  

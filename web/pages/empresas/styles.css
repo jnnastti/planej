@@ -1,0 +1,267 @@
+body {
+	background: linear-gradient(61deg, rgba(3,3,3,1) 2%, rgba(80,83,86,1) 100%);
+	color: #f4f4f4;
+	font-family: 'Open Sans Condensed', sans-serif;
+	overflow-x: hidden;
+}
+
+
+/* cabeçalho */
+.header {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	color: #fff;
+}
+
+.header-bar {
+	position: relative;
+	width: inherit;
+	min-width: 300px;
+	height: 50px;
+	border: 10px solid transparent;
+	border-top: 10px solid #acacac;
+	border-left: 10px solid #acacac;
+	box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25) inset;
+}
+.header-bar::after {
+	content: '';
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	width: 30%;
+	height: 49px;
+	border: 10px solid transparent;
+	border-bottom: 10px solid #acacac;
+	border-right: 10px solid #acacac;
+	transition: 0.3s linear all;
+}
+.header-bar > .logo {
+	position: absolute;
+	top: calc(50% - 20px);
+	left: 10px;
+	transform: translateY(-50%);
+	color: #f4f4f4;
+	font-family: 'Parisienne', cursive;
+	cursor: default;
+	user-select: none;
+}
+.slider-menu {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	z-index: 1;
+}
+.slider-menu > li {
+	display: inline-flex;
+	padding: 14px;
+	margin-left: 2px;
+	font-family: 'Quicksand', sans-serif;
+	color: #f4f4f4;
+	cursor: pointer;
+	transition: 0.3s linear all;
+	user-select: none;
+}
+.slider-menu > li:hover {
+	color: rgba(226, 130, 12, 1);
+}
+
+/* msg */
+.msg {
+	text-align: left;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+/* empresas */
+
+.empresas div {
+	background-color: rgb(92, 91, 91);
+	border-radius: 10px;
+	padding: 15px;
+	text-align: left;
+}
+
+.empresas div .nome {
+	display: flex;
+	flex-direction: row;
+	padding: 0;
+}
+
+.empresas div span {
+	background: 
+	linear-gradient(43deg, 
+		rgba(182,95,173,1) 0%, 
+		rgba(182,95,135,1) 14%, 
+		rgba(191,66,89,1) 36%, 
+		rgba(158,11,26,1) 71%, 
+		rgba(226,130,12,1) 96%);
+	padding: 5px 20px;
+	border-radius: 50%;
+	font-size: 40px;
+	margin-right: 30px;
+}
+
+.empresas div .porcentagem {
+	background-color: #222;
+	padding: 0;
+	text-align: left;
+}
+
+.empresas div .porcentagem .total {
+	background: linear-gradient(
+		60deg,
+		hsl(224, 85%, 66%),
+		hsl(269, 85%, 66%),
+		hsl(314, 85%, 66%),
+		hsl(359, 85%, 66%),
+		hsl(44, 85%, 66%),
+		hsl(89, 85%, 66%),
+		hsl(134, 85%, 66%),
+		hsl(179, 85%, 66%)
+	  );
+	background-size: 300% 300%;
+	background-position: 0 50%;
+	animation: moveGradient 4s alternate infinite;
+	width: 70%;
+}
+
+@keyframes moveGradient {
+	50% {
+	  background-position: 100% 50%;
+	}
+  }
+
+.empresas div button:first-child {
+	height: 65px;
+	border-radius: 8px;
+	outline: none!important;
+	background: none;
+	border: 1px solid rgba(226,130,12,1);
+	cursor: pointer;
+	color: #f4f4f4;
+	font-family: 'Quicksand', sans-serif;
+	transition: all 0.4s;
+}
+
+.empresas div button {
+	margin-top: 15px;
+	height: 65px;
+	border-radius: 8px;
+	outline: none!important;
+	background: linear-gradient(43deg, 
+		rgba(182,95,173,1) 0%, 
+		rgba(182,95,135,1) 14%, 
+		rgba(191,66,89,1) 36%, 
+		rgba(158,11,26,1) 71%, 
+		rgba(226,130,12,1) 96%);
+	border: none;
+	cursor: pointer;
+	color: #f4f4f4;
+	font-family: 'Quicksand', sans-serif;
+	transition: all 0.4s;
+}
+
+.empresas div button:hover {
+	filter: brightness(150%);
+	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.493);
+}
+
+/*close button */
+.empresas div .close-container{
+  position: relative;
+  margin-left: auto;
+  margin-top: 15px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.empresas div .leftright{
+  height: 4px;
+  width: 30px;
+  position: absolute;
+  background-color: rgba(226,130,12,1);
+  border-radius: 2px;
+  transform: rotate(45deg);
+  transition: all .3s ease-in;
+  padding: 0;
+}
+
+.empresas div .rightleft{
+  height: 4px;
+  width: 30px;
+  position: absolute;
+  background-color: rgba(226,130,12,1);
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  transition: all .3s ease-in;
+  padding: 0;
+}
+
+.empresas div .close{
+  margin: 60px 0 0 5px;
+  position: absolute;
+}
+
+.empresas div .close-container:hover .leftright{
+  transform: rotate(-45deg);
+  background-color: rgba(158,11,26,1);
+}
+.empresas div .close-container:hover .rightleft{
+  transform: rotate(45deg);
+  background-color: rgba(158,11,26,1);
+}
+
+/* btn adicionar */
+.adicionar {
+    background: linear-gradient(43deg, 
+		rgba(182,95,173,1) 0%, 
+		rgba(182,95,135,1) 14%, 
+		rgba(191,66,89,1) 36%, 
+		rgba(158,11,26,1) 71%, 
+		rgba(226,130,12,1) 96%);
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0px 5px 20px 5px rgba(146, 146, 146, 0.35);
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 100px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.adicionar img {
+    width: 65px;
+    height: 65px;
+}
+
+.adicionar:hover {
+	filter: brightness(150%);
+	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.493);
+}
+
+/* footer */
+footer {
+	margin: -20;
+    padding: 15;
+    margin-top: 30;
+	background-color: #222;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	color: #fff;
+	bottom: 0;
+	width: 100%;
+	margin-left: -10px;
+}
+  

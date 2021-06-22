@@ -1,0 +1,266 @@
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Quicksand&display=swap" rel="stylesheet">
+
+        <link href="./styles.css" rel="stylesheet" />
+        <link href="./stylePopup.css" rel="stylesheet" />
+        <link href="../../assets/styles/grid.css" rel="stylesheet" />
+
+        <link rel="icon" href="../../assets/imgs/logo.png" type="image/svg" />
+
+        <link href='https://css.gg/add.css' rel='stylesheet'>
+
+        <meta charset="utf-8">
+        <meta name="author" content="Jannaina">
+        <meta name="description" content="Organização de projetos com o sistema Planej">
+
+        <title> Planej | Seus projetos </title>
+    </head>
+
+    <body>
+        <header>
+            <div class="header-bar">
+                <h1 class="logo"> Planej </h1>
+                <ul class="slider-menu">
+                    <li> Início </li>
+                    <li> Empresas </li>
+                    <li> Projetos </li>
+                    <li> Relatórios </li>
+                    <li> Suporte </li>
+                    <li> Login </li>
+                </ul>
+            </div>
+        </header>
+
+        <main class="container">
+            <section class="msg grid-8">
+                <h1> Atualize seus projetos </h1>
+                <p> 
+                    Sempre é um bom dia para novos negócios. Mantenha as informações dos seus projetos atualizadas ou
+                    cadastre um novo e organize de uma forma mais simples seu desenvolvimento.
+                </p>
+            </section>
+
+            <section class="projetos grid-12">
+                <div> 
+                    <h3> Projetos em andamento </h3>
+                    <div class='proj items' id="proj0">
+                        <div class='item'>
+                            <fieldset>
+                                <a href="./formulario/index.html"><button type='button' title='Editar' onclick='editarProjeto();'> ✎ </button></a>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' value='Nome do projeto' name='nome' readOnly>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' value='Nome do responsavel' name='nomeRespo' readOnly>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' id='valor_inicial' value='R$ 300,00' name='valor_inicial' readOnly>
+                                <input type='hidden'  name='id'>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <button type='button' title='Etapas' onclick='etapaProjeto();'> ✓ </button>
+                            </fieldset>
+                        </div>
+                        <div class='item'> 
+                            <fieldset>
+                                <button type='button' class='btnOrcamento' title='Orçamento' onclick='orcamentoProjeto();'> $ </button>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <a href="#deletarModal">
+                                <div class="close-container">
+                                    <div class="leftright"></div>
+                                    <div class="rightleft"></div>
+                                </div>
+                            </a>
+                        </div>   
+                    </div>
+
+                    <div class='proj items' id="proj1">
+                        <div class='item'>
+                            <fieldset>
+                                <a href="./formulario/index.html"><button type='button' title='Editar' onclick='editarProjeto();'> ✎ </button></a>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' value='Nome do projeto' name='nome' readOnly>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' value='Nome do responsavel' name='nomeRespo' readOnly>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' id='valor_inicial' value='R$ 300,00' name='valor_inicial' readOnly>
+                                <input type='hidden'  name='id'>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <button type='button' title='Etapas' onclick='etapaProjeto();'> ✓ </button>
+                            </fieldset>
+                        </div>
+                        <div class='item'> 
+                            <fieldset>
+                                <button type='button' class='btnOrcamento' title='Orçamento' onclick='orcamentoProjeto();'> $ </button>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <a href="#deletarModal">
+                                <div class="close-container">
+                                    <div class="leftright"></div>
+                                    <div class="rightleft"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div> 
+                    <h3> Projetos finalizados </h3>
+
+                    <div class='proj items' id="proj2">
+                        <div class='item'>
+                            <fieldset>
+                                <a href="./formulario/index.html"><button type='button' title='Editar' onclick='editarProjeto();'> ✎ </button></a>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' value='Nome do projeto' name='nome' readOnly>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' value='Nome do responsavel' name='nomeRespo' readOnly>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' id='valor_inicial' value='R$ 300,00' name='valor_inicial' readOnly>
+                                <input type='hidden'  name='id'>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <button type='button' title='Etapas' onclick='etapaProjeto();'> ✓ </button>
+                            </fieldset>
+                        </div>
+                        <div class='item'> 
+                            <fieldset>
+                                <button type='button' class='btnOrcamento' title='Orçamento' onclick='orcamentoProjeto();'> $ </button>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <a href="#deletarModal">
+                                <div class="close-container">
+                                    <div class="leftright"></div>
+                                    <div class="rightleft"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div> 
+                    <h3> Projetos em orçamento </h3>
+
+                    <div class='proj items' id="proj3">
+                        <div class='item'>
+                            <fieldset>
+                                <a href="./formulario/index.html"><button type='button' title='Editar' onclick='editarProjeto();'> ✎ </button></a>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' value='Nome do projeto' name='nome' readOnly>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' value='Nome do responsavel' name='nomeRespo' readOnly>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <input type='text' id='valor_inicial' value='R$ 300,00' name='valor_inicial' readOnly>
+                                <input type='hidden'  name='id'>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <fieldset>
+                                <button type='button' title='Etapas' onclick='etapaProjeto();'> ✓ </button>
+                            </fieldset>
+                        </div>
+                        <div class='item'> 
+                            <fieldset>
+                                <button type='button' class='btnOrcamento' title='Orçamento' onclick='orcamentoProjeto();'> $ </button>
+                            </fieldset>
+                        </div>
+                        <div class='item'>
+                            <a href="#deletarModal">
+                                <div class="close-container">
+                                    <div class="leftright"></div>
+                                    <div class="rightleft"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- popup de deletar -->
+            <div id="deletarModal" class="modalDialog">
+                <div>
+                    <a href="#" title="Close" class="close">
+                        <div class="close-container">
+                            <div class="leftright"></div>
+                            <div class="rightleft"></div>
+                        </div>
+                    </a>
+                    <h2>Deseja excluir esse projeto?</h2>
+                    <p>Uma vez deletado, todos os dados relacionados ao mesmo serão apagados e não poderão mais ser recuperados.</p>
+
+                    <form>
+                        <fieldset class="btn">
+                            <a href="#"><button type="button"> Cancelar </button></a>
+                            <button type="submit"> Deletar </button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <a href="./formulario/index.html">
+                    <button type="button" class="adicionar">
+                        <img src="../../assets/imgs/add.svg">
+                    </button>
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            <div>
+                <p> Desenvolvido por: jnnastti </p>
+            </div>
+        </footer>
+    </body>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="main.js"></script>
+</html>

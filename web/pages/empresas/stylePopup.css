@@ -1,0 +1,139 @@
+.modalDialog {
+    position: fixed;
+    font-family: 'Open Sans Condensed', sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+    pointer-events: none;
+    color: #333;
+  }
+
+  .modalDialog:target {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .modalDialog > div {
+    width: 500px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #f4f4f4;
+  }
+
+  /*close button */
+.close .close-container{
+    position: relative;
+    margin-left: auto;
+    margin-top: 15px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.close .leftright{
+height: 4px;
+width: 30px;
+position: absolute;
+background-color: rgba(226,130,12,1);
+border-radius: 2px;
+transform: rotate(45deg);
+transition: all .3s ease-in;
+padding: 0;
+}
+
+.close .rightleft{
+height: 4px;
+width: 30px;
+position: absolute;
+background-color: rgba(226,130,12,1);
+border-radius: 2px;
+transform: rotate(-45deg);
+transition: all .3s ease-in;
+padding: 0;
+}
+
+.close .close{
+margin: 60px 0 0 5px;
+position: absolute;
+}
+
+.close .close-container:hover .leftright{
+transform: rotate(-45deg);
+background-color: rgba(158,11,26,1);
+}
+.close .close-container:hover .rightleft{
+transform: rotate(45deg);
+background-color: rgba(158,11,26,1);
+}
+
+.modalDialog form fieldset {
+	border: none;
+	padding: 0;
+	margin: 20px 0;
+	position: relative; 
+}
+
+.modalDialog form fieldset input {
+	width: 100%;
+	height: 65px;
+	background: #6b6b6b2c;
+    border-radius: 8px;
+    border: 0;
+    padding: 12px 24px;
+	color: #f4f4f4;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.modalDialog form button {
+    width: 150px;
+	margin-top: 15px;
+	height: 65px;
+	border-radius: 8px;
+	outline: none!important;
+	background: linear-gradient(43deg, 
+		rgba(182,95,173,1) 0%, 
+		rgba(182,95,135,1) 14%, 
+		rgba(191,66,89,1) 36%, 
+		rgba(158,11,26,1) 71%, 
+		rgba(226,130,12,1) 96%);
+	border: none;
+	cursor: pointer;
+	color: #f4f4f4;
+	font-family: 'Quicksand', sans-serif;
+	transition: all 0.4s;
+}
+
+.modalDialog form button:hover {
+	filter: brightness(150%);
+	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.493);
+}
+
+.modalDialog form button:first-child {
+	height: 65px;
+	border-radius: 8px;
+	outline: none!important;
+	background: none;
+	border: 1px solid rgba(226,130,12,1);
+	cursor: pointer;
+	color: #333;
+	font-family: 'Quicksand', sans-serif;
+	transition: all 0.4s;
+}
+
+.modalDialog form .btn {
+    /* text-align: right; */
+    display:flex;
+    justify-content: space-between;
+}
+
+.modalDialog form .btn button {
+  float:left;
+}
