@@ -4,7 +4,6 @@ section {
     border: 0;
     padding: 12px 24px;
 	color: #f4f4f4;
-	font-family: 'Quicksand', sans-serif;
     margin-top: 20px;
 }
 
@@ -58,7 +57,6 @@ form fieldset input {
     border: 0;
     padding: 12px 24px;
 	color: #f4f4f4;
-	font-family: 'Quicksand', sans-serif;
   margin-top: 5px
 }
 
@@ -89,7 +87,6 @@ form button {
 	border: none;
 	cursor: pointer;
 	color: #f4f4f4;
-	font-family: 'Quicksand', sans-serif;
 	transition: all 0.4s;
 }
 

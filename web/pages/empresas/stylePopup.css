@@ -1,6 +1,5 @@
 .modalDialog {
     position: fixed;
-    font-family: 'Open Sans Condensed', sans-serif;
     top: 0;
     right: 0;
     bottom: 0;
@@ -89,7 +88,6 @@ background-color: rgba(158,11,26,1);
     border: 0;
     padding: 12px 24px;
 	color: #f4f4f4;
-	font-family: 'Quicksand', sans-serif;
 }
 
 .modalDialog form button {
@@ -107,7 +105,6 @@ background-color: rgba(158,11,26,1);
 	border: none;
 	cursor: pointer;
 	color: #f4f4f4;
-	font-family: 'Quicksand', sans-serif;
 	transition: all 0.4s;
 }
 
@@ -124,7 +121,6 @@ background-color: rgba(158,11,26,1);
 	border: 1px solid rgba(226,130,12,1);
 	cursor: pointer;
 	color: #333;
-	font-family: 'Quicksand', sans-serif;
 	transition: all 0.4s;
 }
 

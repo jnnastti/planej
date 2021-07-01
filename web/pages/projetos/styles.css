@@ -39,7 +39,6 @@
     border: 0;
     padding: 12px 24px;
 	color: #f4f4f4;
-	font-family: 'Quicksand', sans-serif;
 }
   
 .projetos button {
@@ -57,7 +56,6 @@
 	border: none;
 	cursor: pointer;
 	color: #f4f4f4;
-	font-family: 'Quicksand', sans-serif;
 	transition: all 0.4s;
 }
 
@@ -68,7 +66,6 @@
 	border: 1px solid rgba(226,130,12,1);
 	cursor: pointer;
 	color: #f4f4f4;
-	font-family: 'Quicksand', sans-serif;
 	transition: all 0.4s;
     margin-right: 15px;
 }
