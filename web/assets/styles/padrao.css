@@ -18,5 +18,8 @@ header img {
 }
 
 body {
-    overflow-x: hidden;
+	background: linear-gradient(61deg, rgba(3,3,3,1) 2%, rgba(80,83,86,1) 100%);
+	color: #f4f4f4;
+	font-family: 'Open Sans Condensed', sans-serif;
+	overflow-x: hidden;
 }
