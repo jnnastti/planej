@@ -18,6 +18,15 @@ class Usuario
 
         return $login;
     }
+
+    public function verificacao(string $usuarioLogado): bool
+    {
+        if(empty(($_SESSION['usuarioLogin'])) || ($usuarioLogado !== $_SESSION['usuarioLogin'])) {
+            return true;
+        }
+
+        return false;
+    }
 }
 
 ?>
