@@ -36,61 +36,14 @@ section:last-child div {
 
 form {
     align-items: center;
-    border-radius: 8px;
     color: #f4f4f4;
-}
-
-
-form fieldset {
-	border: none;
-	padding: 0;
-	margin: 20px 0;
-	position: relative; 
-    text-align: left;
-}
-
-form fieldset input {
-	width: 100%;
-	height: 40px;
-	background: #6b6b6b2c;
-    border-radius: 8px;
-    border: 0;
-    padding: 12px 24px;
-	color: #f4f4f4;
-  margin-top: 5px
-}
-
-form fieldset textarea {
-  flex: 1;
-  width: 100%;
-  background: #6b6b6b2c;
-  border-radius: 8px;
-  border: 0;
-  padding: 20px 24px;
-  color: #f4f4f4;
-  resize: none;
-  margin-top: 5px;
+    padding: 0;
+    background: transparent;
+    width: 100%;
+    box-shadow: none;
+    margin-top: -50px;
 }
 
 form button {
     width: 100%;
-	margin-top: 15px;
-	height: 65px;
-	border-radius: 8px;
-	outline: none!important;
-	background: linear-gradient(43deg, 
-		rgba(182,95,173,1) 0%, 
-		rgba(182,95,135,1) 14%, 
-		rgba(191,66,89,1) 36%, 
-		rgba(158,11,26,1) 71%, 
-		rgba(226,130,12,1) 96%);
-	border: none;
-	cursor: pointer;
-	color: #f4f4f4;
-	transition: all 0.4s;
-}
-
-form button:hover {
-	filter: brightness(150%);
-	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.493);
 }

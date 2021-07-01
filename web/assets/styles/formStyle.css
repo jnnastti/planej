@@ -1,139 +1,87 @@
 form {
     padding: 40px 40px;
     background: #FAFAFA;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     border-radius: 8px;
     width: 85%;
+    color: #333;
     box-shadow: 0px 5px 20px 5px rgba(170, 169, 169, 0.65);
 }
 
-form h2 {
-    font-size: 23px;
-}
-
-form img {
-    width: 90px;
-    height: 90px;
-    margin: 20px;
-}
-
-form .field {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-form .field input {
-    flex: 1;
-    background: #E1E5F2;
-    border-radius: 8px;
-    border: 0;
-    padding: 12px 24px;
-    color: #022B3A;
-}
-
-form .field select {
-    flex: 1;
-    background: #E1E5F2;
-    border-radius: 8px;
-    border: 0;
-    padding: 12px 24px;
-    color: #022B3A;
-}
-
-form .field textarea {
-    flex: 1;
-    background: #E1E5F2;
-    border-radius: 8px;
-    border: 0;
-    padding: 20px 24px;
-    color: #022B3A;
-    resize: none;
-}
-
-form .field label {
-    font-size: 16px;
-    padding: 30px 0px 8px 0px;
+form fieldset {
+	border: none;
+	padding: 0;
+	margin: 20px 0;
+	position: relative; 
     text-align: left;
 }
 
-form button {
-    width: 100%;
-    height: 50px;
+form fieldset input {
+	width: 100%;
+	height: 40px;
+	background: #6b6b6b2c;
     border-radius: 8px;
     border: 0;
-    transition: background-color 0.2s;
-    margin-top: 50px;
-    font-size: 14px;
+    padding: 12px 24px;
+	color: #333;
+  margin-top: 5px
+}
+
+form fieldset select {
+	width: 100%;
+	height: 40px;
+	background: #6b6b6b2c;
+    border-radius: 8px;
+    border: 0;
+    padding: 12px 24px;
+	color: #333;
+}
+
+form fieldset textarea {
+    flex: 1;
+    width: 100%;
+    background: #6b6b6b2c;
+    border-radius: 8px;
+    border: 0;
+    padding: 20px 24px;
+    color: #333;
+    resize: none;
+    margin-top: 5px;
+}
+
+form button {
+    width: 150px;
+    margin-top: 15px;
+    height: 65px;
+    border-radius: 8px;
+    outline: none!important;
     cursor: pointer;
+    transition: all 0.4s;
 }
 
-form .btnVerde {
-    background: #1F7A8C;
+form button:hover {
+	filter: brightness(150%);
+	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.493);
+}
+
+form .btnPrincipal {
+    background: linear-gradient(43deg, 
+        rgba(182,95,173,1) 0%, 
+        rgba(182,95,135,1) 14%, 
+        rgba(191,66,89,1) 36%, 
+        rgba(158,11,26,1) 71%, 
+        rgba(226,130,12,1) 96%);
+    border: none;
     color: #f4f4f4;
 }
 
-form .btnVerde:hover {
-    background-color: #022B3A;
-}
-
-
-form .btnLaranja {
-    background: #FFAD69;
-    color: #f4f4f4;
-}
-
-form .btnLaranja:hover {
-    background-color: #FF841F;
-}
-
-form .btnBranco {
-    background: #f4f4f4;
-    border: 1px solid #022B3A;
-    color: #022B3A;
-}
-
-form .btnBranco:hover {
-    background-color: rgba(170, 169, 169, 0.65);
-}
-
-form .btnVermelho {
-    background: #f4f4f4;
-    border: 1px solid #880000;
-    color: #880000;
-}
-
-form .btnVermelho:hover {
-    background-color: rgba(170, 169, 169, 0.65);
-}
-
-.btnAvancar, .btnSalvar {
-    height: 50px;
-	width: 150px;
-    background: #1F7A8C;
-    color: #f4f4f4;
-    padding: 0 30;
-    float: right;
-	margin-right: 10px;
-}
-
-.btnCancelar {
-    height: 50px;
-    width: 120px;
-    background: #f4f4f4;
-    border: 1px solid #1F7A8C;
-    color: #1F7A8C;
-    float: left;
-}
-
-
-form .btnCancelar:hover {
-    background-color: rgba(170, 169, 169, 0.65);
-}
-
-form .btnAvancar:hover {
-    background-color: #022B3A;
+form .btnSecundario {
+	height: 65px;
+	border-radius: 8px;
+	outline: none!important;
+	background: none;
+	border: 1px solid rgba(226,130,12,1);
+	cursor: pointer;
+	color: #333;
+	transition: all 0.4s;
 }
