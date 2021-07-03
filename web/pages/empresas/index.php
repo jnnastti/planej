@@ -3,20 +3,14 @@
     session_start();
 
     require('../../../server/config.php');
-    require('../../../server/src/Usuario.php');
     
     include('../../../server/src/Empresa.php');
     include('../../../server/redirect.php');
 
-    $usuario = new Usuario($db);
-
-    if(!$usuario->verificacao($_SESSION['loginUsuario'])) {
-        $empresa = new Empresa($db);
-
-        $itemEmpresa = $empresa->listarEmpresas($_SESSION['LoginUsuario']);
-    } else {
+    if(empty($_SESSION['usuarioLogin'])) {
         redireciona('../login/login.php');
     }
+    
 ?>
 
 <html>

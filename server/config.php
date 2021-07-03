@@ -6,7 +6,7 @@ class MyDB extends SQLite3
 {
    function __construct()
    {
-      $this->open('../database/planej.db');
+      $this->open('../../../server/database/planej.db');
    }
 }
 
