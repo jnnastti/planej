@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    unset($_SESSION['usuarioLogin']);
+
     require('../../../server/config.php');
     
     include('../../../server/src/Usuario.php');
