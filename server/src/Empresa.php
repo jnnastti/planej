@@ -30,10 +30,13 @@ class Empresa
         $deleteEmpresa->execute();
     }
 
-    public function listarEmpresas(string $idusu): array
+    public function listarEmpresas(string $idusu)
     {
-        $selectEmpresa = $this->sqlite->prepare('SELECT * FROM empresa WHERE idusu = ?');
-        $selectEmpresa->bindParam('s', $idusu);
+        $selectEmpresa = $this->sqlite->prepare("SELECT empresa.* FROM empresa 
+                            INNER JOIN empresa_usuario ON (empresa.idemp = empresa_usuario.idemp) 
+                            INNER JOIN usuario ON (empresa_usuario.idusuario = usuario.idusuario) 
+                            WHERE usuario.idusuario = :id");
+        $selectEmpresa->bindParam(':id', $idusu);
         
         $empresa = $selectEmpresa->execute()->fetchArray();
 

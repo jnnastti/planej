@@ -13,7 +13,7 @@
         $user = $usuario->login($_POST['email'], $_POST['senha']);
 
         if(is_array($user)) {
-            $_SESSION['usuarioLogin'] = $user['codusuario'];
+            $_SESSION['usuarioLogin'] = $user['idusuario'];
             redireciona('../empresas/index.php');
         }
     }

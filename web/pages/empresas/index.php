@@ -10,7 +10,12 @@
     if(empty($_SESSION['usuarioLogin'])) {
         redireciona('../login/login.php');
     }
-    
+
+    $empresa = new Empresa($db);
+
+    $itemEmpresa = $empresa->listarEmpresas($_SESSION['usuarioLogin']);
+
+    var_dump($itemEmpresa);
 ?>
 
 <html>
