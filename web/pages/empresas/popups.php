@@ -10,9 +10,10 @@
         <h2>Editar empresa</h2>
         <p>Altere as informações da sua empresa e mantenha seus dados sempre atualizados.</p>
 
-        <form>
+        <form method="POST" action="./index.php?action=editar">
             <fieldset>
-                <input type="text" placeholder="Nome da empresa" />
+                <input type="text" name="nome" placeholder="Nome da empresa" />
+                <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" />
             </fieldset>
             <fieldset class="btn">
                 <a href="#"><button type="button" class="btnSecundario"> Cancelar </button></a>
@@ -34,9 +35,9 @@
         <h2>Cadastrar empresa</h2>
         <p>Registre uma nova empresa que você esteja associado e comece já seus projetos.</p>
 
-        <form>
+        <form method="POST" action="./index.php?action=cadastrar">
             <fieldset>
-                <input type="text" placeholder="Nome da empresa" />
+                <input type="text" name="nome" placeholder="Nome da empresa" />
             </fieldset>
             <fieldset class="btn">
                 <a href="#"><button type="button" class="btnSecundario"> Cancelar </button></a>
@@ -58,7 +59,8 @@
         <h2>Deseja excluir essa empresa?</h2>
         <p>Uma vez deletada, todos os dados relacionados a mesma serão apagados e não poderão mais ser recuperados.</p>
 
-        <form>
+        <form method="POST" action="./index.php?action=deletar">
+            <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
             <fieldset class="btn">
                 <a href="#"><button type="button" class="btnSecundario"> Cancelar </button></a>
                 <button type="submit" class="btnPrincipal"> Deletar </button>

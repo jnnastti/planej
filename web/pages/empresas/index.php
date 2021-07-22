@@ -1,5 +1,4 @@
 <?php
-
     session_start();
 
     require('../../../server/config.php');
@@ -12,10 +11,27 @@
     }
 
     $empresa = new Empresa($db);
-
     $itemEmpresa = $empresa->listarEmpresas($_SESSION['usuarioLogin']);
 
-    var_dump($itemEmpresa);
+    $action = (isset($_REQUEST['action'] )) ? $_REQUEST['action']  : '';
+
+    switch($action) {
+        case 'deletar': {
+            $empresa->deletarEmpresa($_POST['id']);
+            redireciona('./index.php');
+            break;
+        }
+        case 'editar': {
+            $empresa->editarEmpresa($_POST['nome'], $_POST['id']);
+            redireciona('./index.php');
+            break;
+        }
+        case 'cadastrar': {
+            $empresa->cadastrarEmpresa($_POST['nome'], $_SESSION['usuarioLogin']);
+            redireciona('./index.php');
+            break;
+        }
+    }
 ?>
 
 <html>
@@ -41,10 +57,10 @@
 
             <section class="empresas grid-12">
 
-                <?php foreach($itemEmpresa as $emp) : ?>
+                <?php while($emp = $itemEmpresa->fetchArray()) : ?>
 
                 <div class="emp grid-4" id="emp0">
-                    <a href="#deletarModal?id=<?php echo $emp['idemp']; ?>">
+                    <a href="?id=<?php echo $emp['idemp']; ?>#deletarModal">
                         <div class="close-container">
                             <div class="leftright"></div>
                             <div class="rightleft"></div>
@@ -62,12 +78,12 @@
                     </div>
 
                     <div>
-                        <a href="#editarModal?id=<?php echo $emp['idemp']; ?>"><button class="grid-6"> Editar </button></a>
+                        <a href="?id=<?php echo $emp['idemp']; ?>#editarModal"><button class="grid-6"> Editar </button></a>
                         <button class="grid-6" onclick="selecionarEmpresa(<?php echo $emp['idemp']; ?>)"> Selecionar </button>
                     </div>
                 </div>
 
-                <?php endforeach; ?>
+                <?php endwhile; ?>
 
             </section>
 
