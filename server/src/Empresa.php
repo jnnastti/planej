@@ -54,10 +54,12 @@ class Empresa
         $updateEmpresa->execute();
     }
 
-    public function deletarEmpresa(string $idemp)
+    public function deletarEmpresa(string $idemp, string $idusu)
     {
-        $deleteEmpresa = $this->sqlite->prepare('DELETE FROM empresa_usuario WHERE idemp = :id');
-        $deleteEmpresa->bindParam(':id', $idemp);
+        $deleteEmpresa = $this->sqlite->prepare('DELETE FROM empresa_usuario 
+                            WHERE idemp = :idemp AND idusuario = :idusu');
+        $deleteEmpresa->bindParam(':idemp', $idemp);
+        $deleteEmpresa->bindParam(':idusu', $idusu);
         $deleteEmpresa->execute();
     }
 

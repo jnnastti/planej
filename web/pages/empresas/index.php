@@ -17,7 +17,7 @@
 
     switch($action) {
         case 'deletar': {
-            $empresa->deletarEmpresa($_POST['id']);
+            $empresa->deletarEmpresa($_POST['id'], $_SESSION['usuarioLogin']);
             redireciona('./index.php');
             break;
         }
@@ -59,7 +59,7 @@
 
                 <?php while($emp = $itemEmpresa->fetchArray()) : ?>
 
-                <div class="emp grid-4" id="emp0">
+                <div class="emp grid-3" id="emp0">
                     <a href="?id=<?php echo $emp['idemp']; ?>#deletarModal">
                         <div class="close-container">
                             <div class="leftright"></div>
