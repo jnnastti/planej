@@ -32,30 +32,9 @@
 	border-radius: 50%;
 	font-size: 40px;
 	margin-right: 30px;
-}
-
-.empresas div .porcentagem {
-	background-color: #222;
-	padding: 0;
-	text-align: left;
-}
-
-.empresas div .porcentagem .total {
-	background: linear-gradient(
-		60deg,
-		hsl(224, 85%, 66%),
-		hsl(269, 85%, 66%),
-		hsl(314, 85%, 66%),
-		hsl(359, 85%, 66%),
-		hsl(44, 85%, 66%),
-		hsl(89, 85%, 66%),
-		hsl(134, 85%, 66%),
-		hsl(179, 85%, 66%)
-	  );
-	background-size: 300% 300%;
-	background-position: 0 50%;
-	animation: moveGradient 4s alternate infinite;
-	width: 70%;
+	width: 30px;
+    height: 60px;
+	text-align: center;
 }
 
 @keyframes moveGradient {

@@ -72,11 +72,6 @@
                         <h2> <?php echo $emp['nome']; ?> </h2>
                     </div>
 
-                    <p> Porcentagem de conclusão </p>
-                    <div class="porcentagem">
-                        <div class="total"></div>
-                    </div>
-
                     <div>
                         <a href="?id=<?php echo $emp['idemp']; ?>#editarModal"><button class="grid-6"> Editar </button></a>
                         <button class="grid-6" onclick="selecionarEmpresa(<?php echo $emp['idemp']; ?>)"> Selecionar </button>

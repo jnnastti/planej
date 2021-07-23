@@ -25,7 +25,7 @@
     width: 500px;
     position: relative;
     margin: 5% auto;
-    padding: 5px 20px 13px 20px;
+    padding: 5px 20px;
     border-radius: 10px;
     background: #f4f4f4;
   }
@@ -80,6 +80,7 @@ background-color: rgba(158,11,26,1);
 .modalDialog form {
   background: transparent;
   box-shadow: none;
+  padding: 0;
 }
 
 .modalDialog form .btn {
