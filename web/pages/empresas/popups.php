@@ -12,7 +12,7 @@
 
         <form method="POST" action="./index.php?action=editar">
             <fieldset>
-                <input type="text" name="nome" placeholder="Nome da empresa" />
+                <input type="text" name="nome" placeholder="Nome da empresa" value="<?php echo $nomeEmpresa['nome'] ?>" />
                 <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" />
             </fieldset>
             <fieldset class="btn">

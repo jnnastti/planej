@@ -76,14 +76,18 @@ class Empresa
         return $empresa;
     }
 
-    public function selecionarEmpresa(string $idemp): array
+    public function selecionarEmpresa(string $idemp, string $acao)
     {
-        $selectEmpresaEspecifica = $this->sqlite->prepare('SELECT * FROM empresa WHERE idemp = ?');
-        $selectEmpresaEspecifica->bindParam('s', $idemp);
+        $selectEmpresaEspecifica = $this->sqlite->prepare('SELECT * FROM empresa WHERE idemp = :id');
+        $selectEmpresaEspecifica->bindParam(':id', $idemp);
         
         $empresaSelecionada = $selectEmpresaEspecifica->execute()->fetchArray();
 
-        return $empresaSelecionada;
+        if($acao === 'editar') {
+            return $empresaSelecionada;
+        } else {
+            $_SESSION['empAtiva'] = $empresaSelecionada['idemp'];
+        }
     }
 }
 

@@ -14,6 +14,7 @@
     $itemEmpresa = $empresa->listarEmpresas($_SESSION['usuarioLogin']);
 
     $action = (isset($_REQUEST['action'] )) ? $_REQUEST['action']  : '';
+    $nomeEmpresa = (isset($_GET['id'])) ? $empresa->selecionarEmpresa($_GET['id'], 'editar') : '';
 
     switch($action) {
         case 'deletar': {
@@ -31,7 +32,12 @@
             redireciona('./index.php');
             break;
         }
+        case 'selecionar': {
+            $empresa->selecionarEmpresa($_POST['id'], 'selecionar');
+            redireciona('../projetos/index.html');
+        }
     }
+
 ?>
 
 <html>
@@ -74,7 +80,11 @@
 
                     <div>
                         <a href="?id=<?php echo $emp['idemp']; ?>#editarModal"><button class="grid-6"> Editar </button></a>
-                        <button class="grid-6" onclick="selecionarEmpresa(<?php echo $emp['idemp']; ?>)"> Selecionar </button>
+                        
+                        <form class="btnSelecionar" action="./index.php?action=selecionar" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $emp['idemp']; ?>">
+                            <button class="grid-6" type="submit"> Selecionar </button>
+                        </form>
                     </div>
                 </div>
 
