@@ -56,32 +56,32 @@ class Projeto
         return $projetoSelecionado;
     }
 
-    public function listarPrjAndamento(string $id): array
+    public function listarPrjAndamento(string $id)
     {
-        $selectPrjAndamento = $this->sqlite->prepare('SELECT * FROM projeto WHERE idemp = ? AND situacao = "a"');
-        $selectPrjAndamento->bindParam('s', $id);
+        $selectPrjAndamento = $this->sqlite->prepare('SELECT * FROM projeto WHERE idemp = :id AND situacao = "a"');
+        $selectPrjAndamento->bindParam(':id', $id);
         
-        $prjAndamento = $selectPrjAndamento->execute()->fetchArray();
+        $prjAndamento = $selectPrjAndamento->execute();
 
         return $prjAndamento;
     } 
 
-    public function listarPrjConcluido(string $id): array
+    public function listarPrjConcluido(string $id)
     {
-        $selectPrjConcluido = $this->sqlite->prepare('SELECT * FROM projeto WHERE idemp = ? AND situacao = "c"');
-        $selectPrjConcluido->bindParam('s', $id);
+        $selectPrjConcluido = $this->sqlite->prepare('SELECT * FROM projeto WHERE idemp = :id AND situacao = "c"');
+        $selectPrjConcluido->bindParam(':id', $id);
         
-        $prjConcluido = $selectPrjConcluido->execute()->fetchArray();
+        $prjConcluido = $selectPrjConcluido->execute();
 
         return $prjConcluido;
     } 
 
-    public function listarPrjOrcamento(string $id): array
+    public function listarPrjOrcamento(string $id)
     {
-        $selectPrjOrcamento = $this->sqlite->prepare('SELECT * FROM projeto WHERE idemp = ? AND situacao = "o"');
-        $selectPrjOrcamento->bindParam('s', $id);
+        $selectPrjOrcamento = $this->sqlite->prepare('SELECT * FROM projeto WHERE idemp = :id AND situacao = "o"');
+        $selectPrjOrcamento->bindParam(':id', $id);
         
-        $prjOrcamento = $selectPrjOrcamento->execute()->fetchArray();
+        $prjOrcamento = $selectPrjOrcamento->execute();
 
         return $prjOrcamento;
     } 
