@@ -12,6 +12,7 @@
     <head>
         <?php require('../../assets/cmp/headInfo.php'); ?>
 
+        <link href="../../assets/styles/formStyle.css" rel="stylesheet" />
         <link href="./stylePopup.css" rel="stylesheet" />
 
         <title> Planej | Suas empresas </title>
