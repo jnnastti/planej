@@ -34,7 +34,7 @@
 
                 <?php while($emp = $itemEmpresa->fetchArray()) : ?>
 
-                <div class="emp grid-3" id="emp0">
+                <div class="emp grid-3" id="emp<?php echo $contador; ?>">
                     <a href="?id=<?php echo $emp['idemp']; ?>#deletarModal">
                         <div class="close-container">
                             <div class="leftright"></div>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
 
-                <?php endwhile; ?>
+                <?php $contador++; endwhile; ?>
 
             </section>
 

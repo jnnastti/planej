@@ -27,7 +27,7 @@
 .projetos fieldset {
 	border: none;
 	padding: 0;
-	margin: 20px 5px;
+	margin: 10px 5px;
 	position: relative; 
 }
 
@@ -79,7 +79,7 @@
 .projetos div .close-container{
   position: relative;
   margin-left: auto;
-  margin-top: 40px;
+  margin-top: 30px;
   width: 30px;
   height: 30px;
   cursor: pointer;

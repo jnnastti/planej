@@ -39,10 +39,10 @@ class Projeto
         $updateProjeto->execute();
     }
 
-    public function deletarProjeto(string $id): void
+    public function deletarProjeto(string $id)
     {
-        $deleteProjeto = $this->sqlite->prepare('DELETE FROM projeto WHERE idproj = ?');
-        $deleteProjeto->bindParam('s', $id);
+        $deleteProjeto = $this->sqlite->prepare('DELETE FROM projeto WHERE idproj = :id');
+        $deleteProjeto->bindParam(':id', $id);
         $deleteProjeto->execute();
     }
 

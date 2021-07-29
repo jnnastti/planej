@@ -21,6 +21,8 @@
 
 <html>
     <head>
+    <link href="../../assets/styles/formStyle.css" rel="stylesheet" />
+
         <?php require('../../assets/cmp/headInfo.php'); ?>
 
         <title> Planej | Login </title>

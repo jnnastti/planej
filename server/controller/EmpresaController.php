@@ -13,6 +13,8 @@
     $action = (isset($_REQUEST['action'] )) ? $_REQUEST['action']  : '';
     $nomeEmpresa = (isset($_GET['id'])) ? $empresa->selecionarEmpresa($_GET['id'], 'editar') : '';
 
+    $contador = 0;
+    
     switch($action) {
         case 'deletar': {
             $empresa->deletarEmpresa($_POST['id'], $_SESSION['usuarioLogin']);
@@ -31,7 +33,8 @@
         }
         case 'selecionar': {
             $empresa->selecionarEmpresa($_POST['id'], 'selecionar');
-            redireciona('../projetos/index.html');
+            redireciona('../projetos/index.php');
         }
     }
+
 ?>

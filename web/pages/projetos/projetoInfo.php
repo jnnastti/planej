@@ -18,7 +18,7 @@
     </div>
     <div class='item'>
         <fieldset>
-            <input type='text' id='valor_inicial' value='<?php echo $proj['valor_inicial']; ?>' name='valor_inicial' readOnly>
+            <input type='text' id='valor_inicial' value='R$ <?php echo number_format($proj['valor_inicial'], 2, ',', ''); ?>' name='valor_inicial' readOnly>
         </fieldset>
     </div>
     <div class='item'>

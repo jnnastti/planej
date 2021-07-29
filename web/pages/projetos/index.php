@@ -22,6 +22,16 @@
     $projetoOrcamento = $projeto->listarPrjOrcamento($_SESSION['empAtiva']);
 
     $contador = 0;
+
+    $action = (isset($_REQUEST['action'] )) ? $_REQUEST['action']  : '';
+
+    switch($action) {
+        case 'deletar': {
+            $projeto->deletarProjeto($_POST['id']);
+            redireciona('./index.php');
+            break;
+        }
+    }
 ?>
 
 <html>
