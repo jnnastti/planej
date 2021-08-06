@@ -46,10 +46,10 @@ class Projeto
         $deleteProjeto->execute();
     }
 
-    public function selecionarProjeto(string $id): array
+    public function selecionarProjeto(string $id)
     {
-        $selectProjetoEspecifico = $this->sqlite->prepare('SELECT * FROM projeto WHERE id = ?');
-        $selectProjetoEspecifico->bindParam('s', $id);
+        $selectProjetoEspecifico = $this->sqlite->prepare('SELECT * FROM projeto WHERE id = :id');
+        $selectProjetoEspecifico->bindParam(':id', $id);
         
         $projetoSelecionado = $selectProjetoEspecifico->execute()->fetchArray();
 
