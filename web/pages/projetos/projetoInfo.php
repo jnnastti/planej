@@ -1,7 +1,7 @@
 <div class='proj items' id="proj<?php echo $contador; ?>">
     <div class='item'>
         <fieldset>
-            <a href="./formulario/index.php?id<?php echo $proj['idproj']; ?>">
+            <a href="./formulario/index.php?id=<?php echo $proj['idproj']; ?>">
                 <button type='button' title='Editar' onclick='editarProjeto();'> ✎ </button>
             </a>
         </fieldset>

@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 class Projeto
 {
     private $sqlite;
@@ -9,33 +11,55 @@ class Projeto
         $this->sqlite = $sqlite;
     }
 
-    function cadastrarProjeto(string $nome, string $situacao, string $nomeProp, string $cpfCnpj, string $tell, string $tipo, string $descricao, string $valorIni, string $dataContrato, string $prazo, string $dataLim): void
+    function cadastrarProjeto(object $projeto)
     {
-        $idEmp = $_SESSION['idEmpAtivo'];
+        $idEmp = $_SESSION['empAtiva'];
 
-        $insertProjeto = $this->sqlite->prepare('INSERT INTO projeto(idemp, nome, situacao, nome_proprietario, cpf_proprietario, telefone_proprietario, tipo, descricao, valor_inicial, data_contrato, prazo, data_limite) 
-                                                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);');
-        $insertProjeto->bindParam('ssssssssssss', $idEmp, $nome, $situacao, $nomeProp, $cpfCnpj, $tell, $tipo, $descricao, $valorIni, $dataContrato, $prazo, $dataLim);
+        $insertProjeto = $this->sqlite->prepare('INSERT INTO projeto(idemp, nome, nome_proprietario, cpf_proprietario, telefone_proprietario, tipo, descricao, valor_inicial, data_contrato, prazo, data_limite, situacao)  
+                                                  VALUES(:idemp, :nome, :nomeProp, :cpfProp, :contatoProp, :tipo, :descricao, :valorIni, :dataContrato, :prazo, :dataLimite, :situacao);');
+        $insertProjeto->bindParam(':idemp', $idEmp);
+        $insertProjeto->bindParam(':nome', $projeto->nome);
+        $insertProjeto->bindParam(':nomeProp', $projeto->nome_proprietario);
+        $insertProjeto->bindParam(':cpfProp', $projeto->cpf_proprietario);
+        $insertProjeto->bindParam(':contatoProp', $projeto->telefone_proprietario);
+        $insertProjeto->bindParam(':tipo', $projeto->tipo);
+        $insertProjeto->bindParam(':descricao', $projeto->descricao);
+        $insertProjeto->bindParam(':valorIni', $projeto->valor_inicial);
+        $insertProjeto->bindParam(':dataContrato', $projeto->data_contrato);
+        $insertProjeto->bindParam(':prazo', $projeto->prazo);
+        $insertProjeto->bindParam(':dataLimite', $projeto->data_limite);
+        $insertProjeto->bindParam(':situacao', $projeto->situacao);
         $insertProjeto->execute();
     }
 
-    function editarProjeto(string $id, string $nome, string $situacao, string $nomeProp, string $cpfCnpj, string $tell, string $tipo, string $descricao, string $valorIni, string $dataContrato, string $prazo, string $dataLim): void
+    function editarProjeto(object $projeto)
     {
-
         $updateProjeto = $this->sqlite->prepare('UPDATE projeto SET 
-                                                    nome = ?, 
-                                                    situacao = ?, 
-                                                    nome_proprietario = ?, 
-                                                    cpf_proprietario = ?, 
-                                                    telefone_proprietario = ?,
-                                                    tipo = ?, 
-                                                    descricao = ?, 
-                                                    valor_inicial = ?, 
-                                                    data_contrato = ?, 
-                                                    prazo = ?, 
-                                                    data_limite = ?
-                                                WHERE idproj = ?');
-        $updateProjeto->bindParam('ssssssssssss', $nome, $situacao, $nomeProp, $cpfCnpj, $tell, $tipo, $descricao, $valorIni, $dataContrato, $prazo, $dataLim, $id);
+                                                    nome = :nome,  
+                                                    nome_proprietario = :nomeProp, 
+                                                    cpf_proprietario = :cpfProp, 
+                                                    telefone_proprietario = :contatoProp,
+                                                    tipo = :tipo, 
+                                                    descricao = :descricao, 
+                                                    valor_inicial = :valorIni, 
+                                                    data_contrato = :dataContrato, 
+                                                    prazo = :prazo, 
+                                                    data_limite = :dataLimite,
+                                                    situacao = :situacao 
+                                                WHERE idproj = :idproj');
+        $updateProjeto->bindParam(':idproj', $projeto->idproj);
+        $updateProjeto->bindParam(':nome', $projeto->nome);
+        $updateProjeto->bindParam(':nomeProp', $projeto->nome_proprietario);
+        $updateProjeto->bindParam(':cpfProp', $projeto->cpf_proprietario);
+        $updateProjeto->bindParam(':contatoProp', $projeto->telefone_proprietario);
+        $updateProjeto->bindParam(':tipo', $projeto->tipo);
+        $updateProjeto->bindParam(':descricao', $projeto->descricao);
+        $updateProjeto->bindParam(':valorIni', $projeto->valor_inicial);
+        $updateProjeto->bindParam(':dataContrato', $projeto->data_contrato);
+        $updateProjeto->bindParam(':prazo', $projeto->prazo);
+        $updateProjeto->bindParam(':dataLimite', $projeto->data_limite);
+        $updateProjeto->bindParam(':situacao', $projeto->situacao);
+
         $updateProjeto->execute();
     }
 
@@ -48,7 +72,7 @@ class Projeto
 
     public function selecionarProjeto(string $id)
     {
-        $selectProjetoEspecifico = $this->sqlite->prepare('SELECT * FROM projeto WHERE id = :id');
+        $selectProjetoEspecifico = $this->sqlite->prepare('SELECT * FROM projeto WHERE idproj = :id');
         $selectProjetoEspecifico->bindParam(':id', $id);
         
         $projetoSelecionado = $selectProjetoEspecifico->execute()->fetchArray();

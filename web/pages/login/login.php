@@ -3,7 +3,7 @@
 
     unset($_SESSION['usuarioLogin']);
 
-    require('../../../server/config.php');
+    require('../../../server/config/database.php');
     
     include('../../../server/src/Usuario.php');
     include('../../../server/redirect.php');

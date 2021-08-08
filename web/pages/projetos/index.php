@@ -75,7 +75,7 @@
             <?php require('./popups.php'); ?>
 
             <div>
-                <a href="./formulario/index.html">
+                <a href="./formulario/index.php">
                     <button type="button" class="adicionar">
                         <img src="../../assets/imgs/add.svg">
                     </button>

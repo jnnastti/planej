@@ -8,6 +8,10 @@ form .btn button {
   float:left;
 }
 
+form input {
+  color: #333!important;
+}
+
 .items {
   width: 100%;
   display: flex;

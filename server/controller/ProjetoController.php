@@ -2,7 +2,7 @@
 
     session_start();
 
-    require('../../../server/config.php');
+    require('../../../server/config/database.php');
 
     include('../../../server/src/Projeto.php');
     include('../../../server/redirect.php');

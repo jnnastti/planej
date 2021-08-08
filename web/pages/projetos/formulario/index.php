@@ -2,7 +2,7 @@
 
     session_start();
 
-    require('../../../../server/config.php');
+    require('../../../../server/config/databaseSubpage.php');
 
     include('../../../../server/src/Projeto.php');
     include('../../../../server/redirect.php');
@@ -27,13 +27,44 @@
     function verificaSituacao($situacao, $valor) {
        return $situacao == $valor;
     }
+
+    $action = (isset($_REQUEST['action'] )) ? $_REQUEST['action']  : '';
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $projetoDados = (object) array (
+            'nome' => $_POST['nome'],
+            'nome_proprietario' => $_POST['nome_proprietario'],
+            'cpf_proprietario' => $_POST['cpfcnpj'],
+            'telefone_proprietario' => $_POST['contato'],
+            'tipo' => $_POST['tipo'],
+            'descricao' => $_POST['descricao'],
+            'valor_inicial' => $_POST['valor_inicial'],
+            'data_contrato' => $_POST['datacontrato'],
+            'prazo' => $_POST['prazo'],
+            'data_limite' => $_POST['datalimite'],
+            'situacao' => $_POST['situacao'],
+            'idproj' => $_POST['id']
+        );
+    }
+    switch($action) {
+        case 'editar': {
+            $projeto->editarProjeto($projetoDados);
+            redireciona('./index.php?id=' . $_POST['id']);
+            break;
+        }
+        case 'cadastrar': {
+            $projeto->cadastrarProjeto($projetoDados);
+            redireciona('../index.php');
+            break;
+        }   
+    }
 ?>
 
 <html>
     <head>
-        <?php require('../../../assets/cmp/subpages/headInfo.php'); ?>
-
         <link href="../../../assets/styles/formStyle.css" rel="stylesheet" />
+
+        <?php require('../../../assets/cmp/subpages/headInfo.php'); ?>
 
         <title> Planej | Configure seu projeto </title>
     </head>
@@ -48,14 +79,16 @@
                 possa acompanhar seu crescimento.
             </p>
 
-            <form>
+            <form action="./index.php?action=<?php echo $existeProjeto ? "editar" : "cadastrar" ?>" method="POST">
+                <input type="hidden" name="id" value="<?php echo $existeProjeto ? $projetoInfo['idproj'] : ""; ?>"/>
+            
                 <fieldset>
                     <label> Nome do projeto: </label>
-                    <input type="text" placeholder="Nome" value="<?php echo $existeProjeto ? $projetoInfo['nome'] : ""; ?>"/>
+                    <input type="text" name="nome" placeholder="Nome" value="<?php echo $existeProjeto ? $projetoInfo['nome'] : ""; ?>"/>
                 </fieldset>
                 <fieldset>
                     <label> Nome do proprietário: </label>
-                    <input type="text" placeholder="Nome do proprietário" value="<?php echo $existeProjeto ? $projetoInfo['nome_proprietario'] : ""; ?>"/>
+                    <input type="text" name="nome_proprietario" placeholder="Nome do proprietário" value="<?php echo $existeProjeto ? $projetoInfo['nome_proprietario'] : ""; ?>"/>
                 </fieldset>
 
                 <div class='items'>
@@ -83,15 +116,15 @@
                             <select name="situacao">
                                 <option 
                                     value="a" 
-                                    <? echo $existeProjeto ? (verificaSituacao($projetoInfo['situacao'], "a") ? "checked" : "") : ""; ?> 
+                                    <? echo $existeProjeto ? (verificaSituacao($projetoInfo['situacao'], "a") ? "selected" : "") : ""; ?> 
                                 > Andamento </option>
                                 <option 
                                     value="c"
-                                    <? echo $existeProjeto ? (verificaSituacao($projetoInfo['situacao'], "c") ? "checked" : "") : ""; ?> 
+                                    <? echo $existeProjeto ? (verificaSituacao($projetoInfo['situacao'], "c") ? "selected" : "") : ""; ?> 
                                 > Concluido </option>
                                 <option 
                                     value="o"
-                                    <? echo $existeProjeto ? (verificaSituacao($projetoInfo['situacao'], "o") ? "checked" : "") : ""; ?> 
+                                    <? echo $existeProjeto ? (verificaSituacao($projetoInfo['situacao'], "o") ? "selected" : "") : ""; ?> 
                                 > Orçamento ou negociação </option>
                             </select>
                         </fieldset>
@@ -121,19 +154,19 @@
                     <div class='item'>    
                         <fieldset>
                             <label> Valor global: </label>
-                            <input type='text' name='vg' placeholder="Valor global" value="<?php echo $existeProjeto ? $projetoInfo['valor_inicial'] : ""; ?>" />
+                            <input type='text' name='valor_inicial' placeholder="Valor global" value="<?php echo $existeProjeto ? number_format($projetoInfo['valor_inicial'], 2, ',', '') : ""; ?>" />
                         </fieldset>
                     </div>
                 </div>
 
                 <fieldset>
                     <label> Descrição: </label>
-                    <textarea> <?php echo $existeProjeto ? $projetoInfo['descricao'] : ""; ?> </textarea>
+                    <textarea name="descricao"> <?php echo $existeProjeto ? $projetoInfo['descricao'] : ""; ?> </textarea>
                 </fieldset>
         
                 <fieldset class="btn">
-                    <a href="#"><button type="button" class="btnSecundario"> Cancelar </button></a>
-                    <button type="submit" class="btnPrincipal"> Cadastrar </button>
+                    <a href="../index.php"><button type="button" class="btnSecundario"> Cancelar </button></a>
+                    <button type="submit" class="btnPrincipal"> <?php echo $existeProjeto ? "Editar" : "Cadastrar" ?> </button>
                 </fieldset>
             </form>
         </main>
