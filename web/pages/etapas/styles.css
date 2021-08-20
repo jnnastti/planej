@@ -1,0 +1,214 @@
+.msg {
+	text-align: left;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+
+/* btn adicionar */
+.adicionar {
+    background: linear-gradient(43deg, 
+		rgba(182,95,173,1) 0%, 
+		rgba(182,95,135,1) 14%, 
+		rgba(191,66,89,1) 36%, 
+		rgba(158,11,26,1) 71%, 
+		rgba(226,130,12,1) 96%);
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0px 5px 20px 5px rgba(146, 146, 146, 0.35);
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 100px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.adicionar img {
+    width: 45px;
+    height: 45px;
+}
+
+.adicionar:hover {
+	filter: brightness(150%);
+	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.493);
+}
+
+/* formulario */
+.modalDialog h2 {
+    margin-top: -20px;
+}
+
+
+/* checklist */
+#checklist {
+    width: 100px;
+    min-height: 140px;
+    position: relative;
+    padding: 30px 45px;
+    display: grid;
+    grid-template-columns: 30px auto;
+    align-items: center;
+}
+
+#checklist label {
+    position: relative;
+    cursor: pointer;
+    display: grid;
+    align-items: center;
+    width: fit-content;
+    transition: color 0.3s ease;
+}
+
+#checklist label::before, #checklist label::after {
+    content: "";
+    position: absolute;
+}
+
+#checklist label::before {
+    height: 2px;
+    width: 8px;
+    left: -27px;
+    background: #e2820c;
+    border-radius: 2px;
+    transition: background 0.3s ease;
+}
+
+#checklist input[type=checkbox] {
+    appearance: none;
+    position: relative;
+    height: 15px;
+    width: 15px;
+    outline: none;
+    border: 0;
+    margin: 0 15px 0 0;
+    cursor: pointer;
+    display: grid;
+    align-items: center;
+}
+
+#checklist input[type=checkbox]::before, #checklist input[type=checkbox]::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    top: auto;
+    background: #e2820c;
+    border-radius: 2px;
+}
+
+#checklist input[type=checkbox]::before {
+    width: 0px;
+    right: 60%;
+    transform-origin: right bottom;
+}
+
+#checklist input[type=checkbox]::after {
+    width: 0px;
+    left: 40%;
+    transform-origin: left bottom;
+}
+
+#checklist input[type=checkbox]:checked::before {
+    animation: check-01 0.4s ease forwards;
+}
+
+#checklist input[type=checkbox]:checked::after {
+    animation: check-02 0.4s ease forwards;
+}
+
+#checklist input[type=checkbox]:checked + label {
+    color: #c3c8de;
+    animation: move 0.3s ease 0.1s forwards;
+}
+
+#checklist input[type=checkbox]:checked + label::before {
+    background: #c3c8de;
+    animation: slice 0.4s ease forwards;
+}
+
+#checklist input[type=checkbox]:checked + label::after {
+    animation: firework 0.5s ease forwards 0.1s;
+}
+
+  
+@keyframes move {
+    50% {
+      padding-left: 8px;
+      padding-right: 0px;
+    }
+    100% {
+      padding-right: 4px;
+    }
+}
+
+@keyframes slice {
+    60% {
+      width: 100%;
+      left: 4px;
+    }
+    100% {
+      width: 100%;
+      left: -2px;
+      padding-left: 0;
+    }
+}
+
+@keyframes check-01 {
+    0% {
+      width: 4px;
+      top: auto;
+      transform: rotate(0);
+    }
+    50% {
+      width: 0px;
+      top: auto;
+      transform: rotate(0);
+    }
+    51% {
+      width: 0px;
+      top: 8px;
+      transform: rotate(45deg);
+    }
+    100% {
+      width: 5px;
+      top: 8px;
+      transform: rotate(45deg);
+    }
+}
+
+@keyframes check-02 {
+    0% {
+      width: 4px;
+      top: auto;
+      transform: rotate(0);
+    }
+    50% {
+      width: 0px;
+      top: auto;
+      transform: rotate(0);
+    }
+    51% {
+      width: 0px;
+      top: 8px;
+      transform: rotate(-45deg);
+    }
+    100% {
+      width: 10px;
+      top: 8px;
+      transform: rotate(-45deg);
+    }
+}
+
+@keyframes firework {
+    0% {
+      opacity: 1;
+      box-shadow: 0 0 0 -2px #e2820c, 0 0 0 -2px #e2820c, 0 0 0 -2px #e2820c, 0 0 0 -2px #e2820c, 0 0 0 -2px #e2820c, 0 0 0 -2px #e2820c;
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      box-shadow: 0 -15px 0 0px #e2820c, 14px -8px 0 0px #e2820c, 14px 8px 0 0px #e2820c, 0 15px 0 0px #e2820c, -14px 8px 0 0px #e2820c, -14px -8px 0 0px #e2820c;
+    }
+}
