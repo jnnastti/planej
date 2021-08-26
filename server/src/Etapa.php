@@ -2,9 +2,16 @@
 
 class Etapa
 {
+    private $sqlite;
+
+    public function __construct(MyDB $sqlite)
+    {
+        $this->sqlite = $sqlite;
+    }
+
     public function cadastrarEtapa(string $descricao, string $dataIni, string $dataFinal, string $responsavel): void
     {
-        $idproj = $_SESSION['idProjAtivo'];;
+        $idproj = $_SESSION['idProjAtivo'];
 
         $insertEtapa = $this->sqlite->prepare('INSERT INTO etapas(descricao, data_inicio, data_final, responsavel,  idproj) 
                                                  VALUES(?, ?, ?, ?, ?);');
@@ -32,14 +39,25 @@ class Etapa
         $deleteEtapa->execute();
     }
 
-    public function listarEtapas(string $id): array
+    public function listarEtapas(string $id)
     {
-        $selectEtapa = $this->sqlite->prepare('SELECT * FROM etapas WHERE idproj = ?');
-        $selectEtapa->bindParam('s', $id);
+        $selectEtapa = $this->sqlite->prepare('SELECT * FROM etapas WHERE idproj = :id AND subetapa = 0');
+        $selectEtapa->bindParam(':id', $id);
         
-        $etapa = $selectEtapa->execute()->fetchArray();
+        $etapa = $selectEtapa->execute();
 
         return $etapa;
+    }
+
+    public function listarSubEtapas(string $id, string $proj)
+    {
+        $selectSubEtapa = $this->sqlite->prepare('SELECT * FROM etapas WHERE subetapa = :id AND idproj = :proj');
+        $selectSubEtapa->bindParam(':id', $id);
+        $selectSubEtapa->bindParam(':proj', $proj);
+
+        $subEtapa = $selectSubEtapa->execute();
+
+        return $subEtapa;
     }
 }
 

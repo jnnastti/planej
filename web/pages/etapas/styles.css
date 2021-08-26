@@ -46,7 +46,7 @@
     position: relative;
     padding: 30px 45px 10px 0px;
     display: grid;
-    grid-template-columns: 30px 100px;
+    grid-template-columns: 30px auto;
     align-items: center;
 }
 
@@ -133,6 +133,11 @@
 
 #checklist .sec {
   margin-left: 40px;
+  grid-template-columns: auto auto;
+  text-align: left;
+  padding: 0 20px;
+  width: fit-content;
+  margin-right: auto;
 }
 
 #checklist .ter {
