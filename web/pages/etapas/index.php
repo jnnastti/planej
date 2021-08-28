@@ -66,26 +66,33 @@
 
                 <?php while($etp = $etapas->fetchArray()) : ?>
 
-                <div class="grid-4">
-                    <div id="checklist">
-                        <input 
-                            class="pri" 
-                            id="<?php echo $etp['idetapa'];?>" 
-                            type="checkbox" 
-                            name="r" 
-                            value="<?php echo $etp['idetapa'];?>"
-                            
-                            <?php
-                                if($etp['situacao'] == 'F') {
-                                    echo "checked";
-                                }
-                            ?>
-                            >
+                <div id="checklist" class="grid-12">
+                    <input 
+                        class="pri" 
+                        id="<?php echo $etp['idetapa'];?>" 
+                        type="checkbox" 
+                        name="r" 
+                        value="<?php echo $etp['idetapa'];?>"
+                        
+                        <?php
+                            if($etp['situacao'] == 'F') {
+                                echo "checked";
+                            }
+                        ?>
+                    >
 
-                        <label for="<?php echo $etp['idetapa'];?>" class="pri">
-                            <? echo $etp['descricao']; ?>
-                        </label>
+                    <label for="<?php echo $etp['idetapa'];?>" class="pri">
+                        <? echo $etp['descricao']; ?>
+                    </label>
+                        
+                    <label> <?php echo $etp['responsavel'];?></label>
+                    <input type="date" value="<?php echo $etp['data_inicio']?>"/>
+                    <p> - </p>
+                    <input type="date" value="<?php echo $etp['data_final']?>"/>
+                    
+                    <button type="button" class="btnPrincipal" onclick="onMostraSubEtapas(<?php echo $etp['idetapa']; ?>)"> v </button>
 
+                    <div id="collapse<?php echo $etp['idetapa']; ?>" class="collapse">
                         <?php 
                         $subEtapas = $etapa->listarSubEtapas($etp['idetapa'], $idproj);
 
@@ -105,6 +112,11 @@
                         <label for="<?php echo $subEtp['idetapa']; ?>" class="sec">
                             <?php echo $subEtp['descricao']; ?>
                         </label>
+
+                        <label> <?php echo $subEtp['responsavel'];?></label>
+                        <input type="date" value="<?php echo $subEtp['data_inicio']?>"/>
+                        <p> - </p>
+                        <input type="date" value="<?php echo $subEtp['data_final']?>"/>
 
                         <?php endwhile; ?>
                     </div>
@@ -126,16 +138,16 @@
 
                     <form method="POST" action="./index.php?action=cadastrar">
                         <fieldset>
-                            <input type="text" name="nome" placeholder="Etapa" />
+                            <input type="text" name="descricao" placeholder="Etapa" />
                         </fieldset>
                         <fieldset>
-                            <select>
-                                <option> Etapa principal </option>
-                            </select>
-                        </fieldset>
-                        <fieldset>
-                            <select>
-                                <option> Sub-etapa </option>
+                            <select name="etapaPrincipal">
+                                <option value="0"> Etapa principal </option>
+                                <?php while($etp = $etapas->fetchArray()) : ?>
+                                    <option value="<?php echo $etp[ 'idetapa']?>">
+                                        <?php echo $etp['descricao']; ?>
+                                    </option>
+                                <?php endwhile; ?>
                             </select>
                         </fieldset>
                         <fieldset class="btn">
@@ -161,4 +173,5 @@
             </div>
         </footer>
     </body>
+    <script src="./main.js"></script>
 </html>
