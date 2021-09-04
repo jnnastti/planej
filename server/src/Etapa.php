@@ -9,13 +9,18 @@ class Etapa
         $this->sqlite = $sqlite;
     }
 
-    public function cadastrarEtapa(string $descricao, string $dataIni, string $dataFinal, string $responsavel): void
+    public function cadastrarEtapa(object $etapa)
     {
-        $idproj = $_SESSION['idProjAtivo'];
-
-        $insertEtapa = $this->sqlite->prepare('INSERT INTO etapas(descricao, data_inicio, data_final, responsavel,  idproj) 
-                                                 VALUES(?, ?, ?, ?, ?);');
-        $insertEtapa->bindParam('sssss', $descricao, $dataIni, $dataFinal, $responsavel, $idproj);
+        $insertEtapa = $this->sqlite->prepare('INSERT INTO etapas(descricao, situacao, data_inicio, data_final, responsavel,  idproj, subetapa) 
+                                                 VALUES(:descricao, :sit, :dataIni, :dataFim, :responsavel, :projeto, :subetapa);');
+        $insertEtapa->bindParam(':descricao', $etapa->descricao);
+        $insertEtapa->bindParam(':sit', $etapa->situacao);
+        $insertEtapa->bindParam(':dataIni', $etapa->data_inicio);
+        $insertEtapa->bindParam(':dataFim', $etapa->data_final);
+        $insertEtapa->bindParam(':responsavel', $etapa->responsavel);
+        $insertEtapa->bindParam(':projeto', $etapa->projeto);
+        $insertEtapa->bindParam(':subetapa', $etapa->subetapa);
+        
         $insertEtapa->execute();
     }
 

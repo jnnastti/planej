@@ -39,6 +39,17 @@
     margin-top: -20px;
 }
 
+.modalDialog .items {
+  margin: -30px 0 -15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modalDialog .items .item {
+  margin: 5px;
+}
+
 /* checklist */
 #checklist {
     width: 100%;

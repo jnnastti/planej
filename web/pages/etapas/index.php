@@ -11,46 +11,19 @@
         redireciona('../empresas/index.php');
     }
 
-    // if(empty($_SESSION['projAtivo'])) {
-    //     redireciona('../projetos/index.php');
-    // }
 ?>
 
 <html>
     <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Parisienne&family=Quicksand:wght@300&display=swap" rel="stylesheet">
-        <link href='https://css.gg/add.css' rel='stylesheet'>
+        <?php require('../../assets/cmp/headInfo.php'); ?>
 
-        <link href="../../assets/styles/grid.css" rel="stylesheet" />
         <link href="../../assets/styles/formStyle.css" rel="stylesheet" />
-        <link href="../../assets/styles/padrao.css" rel="stylesheet" />
-        <link href="../../assets/styles/headAndFooter.css" rel="stylesheet" />
-
         <link href="./stylePopup.css" rel="stylesheet" />
-        <link href="./styles.css" rel="stylesheet" />
 
-        <link rel="icon" href="../../assets/imgs/logo.png" type="image/svg" />
-
-        <meta charset="utf-8">
-        <meta name="author" content="Jannaina">
-        <meta name="description" content="Organização de projetos com o sistema Planej">
+        <title> Planej | Etapas do projeto </title>
     </head>
     <body>
-        <header>
-            <div class="header-bar">
-                <h1 class="logo"> Planej </h1>
-                <ul class="slider-menu">
-                    <li> Início </li>
-                    <li> Empresas </li>
-                    <li> Projetos </li>
-                    <li> Relatórios </li>
-                    <li> Suporte </li>
-                    <li> Login </li>
-                </ul>
-            </div>
-        </header>
+        <?php require('../../assets/cmp/header.php'); ?>
 
         <main class="container">
             <section class="msg grid-8">
@@ -137,19 +110,40 @@
                     <h2>Cadastrar etapa</h2>
 
                     <form method="POST" action="./index.php?action=cadastrar">
+                        <input type="hidden" name="projeto" value="<?php echo $_GET['id']; ?>">
                         <fieldset>
                             <input type="text" name="descricao" placeholder="Etapa" />
                         </fieldset>
                         <fieldset>
-                            <select name="etapaPrincipal">
-                                <option value="0"> Etapa principal </option>
+                            <select name="subetapa">
+                                <option value="0" selected> Etapa principal </option>
                                 <?php while($etp = $etapas->fetchArray()) : ?>
-                                    <option value="<?php echo $etp[ 'idetapa']?>">
+                                    <option value="<?php echo $etp['idetapa']?>">
                                         <?php echo $etp['descricao']; ?>
                                     </option>
                                 <?php endwhile; ?>
                             </select>
                         </fieldset>
+                        
+                        <fieldset>
+                            <input type="text" name="responsavel" placeholder="Responsável" />
+                        </fieldset>
+
+                        <div class="items">
+                            <div class="item">
+                                <fieldset>
+                                    <label> Início: </label>
+                                    <input type="date" name="dataini" />
+                                </fieldset>
+                            </div>
+                            <div class="item">
+                                <fieldset>
+                                <label> Fim: </label>
+                                    <input type="date" name="datafim" />
+                                </fieldset>
+                            </div>
+                        </div>
+
                         <fieldset class="btn">
                             <a href="#"><button type="button" class="btnSecundario"> Cancelar </button></a>
                             <button type="submit" class="btnPrincipal"> Cadastrar </button>

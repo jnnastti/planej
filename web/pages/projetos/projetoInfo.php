@@ -23,7 +23,7 @@
     </div>
     <div class='item'>
         <fieldset>
-            <button type='button' title='Etapas' onclick='etapaProjeto();'> ✓ </button>
+            <a href="../etapas/index.php?id=<?php echo $proj['idproj']; ?>"><button type='button' title='Etapas' onclick='etapaProjeto();'> ✓ </button>
         </fieldset>
     </div>
     <div class='item'> 
