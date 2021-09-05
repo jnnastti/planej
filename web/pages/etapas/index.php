@@ -45,7 +45,8 @@
                         id="<?php echo $etp['idetapa'];?>" 
                         type="checkbox" 
                         name="r" 
-                        value="<?php echo $etp['idetapa'];?>"
+                        value="<?php echo $etp['idetapa'];?>" 
+                        onchange="onCheckEtapa(<?php echo $_GET['id'] ?>, <?php echo $etp['idetapa'];?>)"
                         
                         <?php
                             if($etp['situacao'] == 'F') {
@@ -59,11 +60,18 @@
                     </label>
                         
                     <label> <?php echo $etp['responsavel'];?></label>
-                    <input type="date" value="<?php echo $etp['data_inicio']?>"/>
+                    <input type="date" value="<?php echo $etp['data_inicio']?>" readonly />
                     <p> - </p>
-                    <input type="date" value="<?php echo $etp['data_final']?>"/>
+                    <input type="date" value="<?php echo $etp['data_final']?>" readonly />
                     
                     <button type="button" class="btnPrincipal" onclick="onMostraSubEtapas(<?php echo $etp['idetapa']; ?>)"> v </button>
+                    
+                    <a href="?id=<?php echo $_GET['id']; ?>&idetapa=<?php echo $etp['idetapa']; ?>#deletarModal" title="Close" class="close">
+                        <div class="close-container">
+                            <div class="leftright"></div>
+                            <div class="rightleft"></div>
+                        </div>
+                    </a>
 
                     <div id="collapse<?php echo $etp['idetapa']; ?>" class="collapse">
                         <?php 
@@ -87,9 +95,9 @@
                         </label>
 
                         <label> <?php echo $subEtp['responsavel'];?></label>
-                        <input type="date" value="<?php echo $subEtp['data_inicio']?>"/>
+                        <input type="date" value="<?php echo $subEtp['data_inicio']?>" readonly />
                         <p> - </p>
-                        <input type="date" value="<?php echo $subEtp['data_final']?>"/>
+                        <input type="date" value="<?php echo $subEtp['data_final']?>" readonly />
 
                         <?php endwhile; ?>
                     </div>
@@ -97,60 +105,7 @@
                 <?php endwhile; ?>
             </section>
 
-            
-            <!-- popup de cadastrar -->
-            <div id="cadastrarModal" class="modalDialog">
-                <div>
-                    <a href="#" title="Close" class="close">
-                        <div class="close-container">
-                            <div class="leftright"></div>
-                            <div class="rightleft"></div>
-                        </div>
-                    </a>
-                    <h2>Cadastrar etapa</h2>
-
-                    <form method="POST" action="./index.php?action=cadastrar">
-                        <input type="hidden" name="projeto" value="<?php echo $_GET['id']; ?>">
-                        <fieldset>
-                            <input type="text" name="descricao" placeholder="Etapa" />
-                        </fieldset>
-                        <fieldset>
-                            <select name="subetapa">
-                                <option value="0" selected> Etapa principal </option>
-                                <?php while($etp = $etapas->fetchArray()) : ?>
-                                    <option value="<?php echo $etp['idetapa']?>">
-                                        <?php echo $etp['descricao']; ?>
-                                    </option>
-                                <?php endwhile; ?>
-                            </select>
-                        </fieldset>
-                        
-                        <fieldset>
-                            <input type="text" name="responsavel" placeholder="Responsável" />
-                        </fieldset>
-
-                        <div class="items">
-                            <div class="item">
-                                <fieldset>
-                                    <label> Início: </label>
-                                    <input type="date" name="dataini" />
-                                </fieldset>
-                            </div>
-                            <div class="item">
-                                <fieldset>
-                                <label> Fim: </label>
-                                    <input type="date" name="datafim" />
-                                </fieldset>
-                            </div>
-                        </div>
-
-                        <fieldset class="btn">
-                            <a href="#"><button type="button" class="btnSecundario"> Cancelar </button></a>
-                            <button type="submit" class="btnPrincipal"> Cadastrar </button>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
+            <?php require('./popups.php'); ?>
 
             <div>
                 <a href="#cadastrarModal">
@@ -167,5 +122,6 @@
             </div>
         </footer>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="./main.js"></script>
 </html>

@@ -9,3 +9,34 @@ function onMostraSubEtapas(idetapa) {
         subetapas.style.padding = '20px 35px 20px 20px'
     }
 }
+
+function onCheckEtapa(idproj, idetapa) {
+    var check = document.getElementById(idetapa).checked;
+
+    var situacao = check ? 'F' : 'A';
+    
+    var dados = {
+        id: idetapa,
+        situacao: situacao,
+        subetapa: '0',
+        projeto: idproj
+    };
+
+    $.ajax({
+        url: `?id=${idproj}&action=atualizar`,
+        type: 'POST',
+        data: {data: JSON.stringify(dados)},
+        success: function(response){
+            // Retorno se tudo ocorreu normalmente
+           this.onCheckSubEtapas(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+        // Retorno caso algum erro ocorra
+            console.log(errorThrown)
+        }
+    });
+}
+
+function onCheckSubEtapas(idsubetapas) {
+
+}

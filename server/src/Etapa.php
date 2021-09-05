@@ -24,23 +24,19 @@ class Etapa
         $insertEtapa->execute();
     }
 
-    public function editarEtapa(string $id, string $descricao, string $dataIni, string $dataFinal, string $responsavel, string $situacao): void
+    public function deletarSubEtapas(string $id) 
     {
-        $updateEtapa = $this->sqlite->prepare('UPDATE etapas SET 
-                                                    descricao = ?,
-                                                    data_inicio = ?,
-                                                    responsavel = ?,
-                                                    situacao = ?,
-                                                    data_final = ?
-                                                 WHERE idetapa = ?');
-        $updateEtapa->bindParam('ssssss', $descricao, $dataIni, $responsavel, $situacao, $dataFinal, $id);
-        $updateEtapa->execute();
+        $deletarSubEtapa = $this->sqlite->prepare('DELETE FROM etapas WHERE subetapa = :id');
+        $deletarSubEtapa->bindParam(':id', $id);
+        $deletarSubEtapa->execute();
     }
 
-    public function deletarEtapa(string $id): void
+    public function deletarEtapa(string $id)
     {
-        $deleteEtapa = $this->sqlite->prepare('DELETE FROM etapas WHERE idetapa = ?');
-        $deleteEtapa->bindParam('s', $id);
+        $this->deletarSubEtapas($id);
+
+        $deleteEtapa = $this->sqlite->prepare('DELETE FROM etapas WHERE idetapa = :id');
+        $deleteEtapa->bindParam(':id', $id);
         $deleteEtapa->execute();
     }
 
@@ -63,6 +59,28 @@ class Etapa
         $subEtapa = $selectSubEtapa->execute();
 
         return $subEtapa;
+    }
+
+    public function finalizarEtapa(object $dados)
+    {
+
+        $checkEtapa = $this->sqlite->prepare('UPDATE etapas SET situacao = :situacao WHERE idetapa = :id');
+        $checkEtapa->bindParam(':id', $dados->id);
+        $checkEtapa->bindParam(':situacao', $dados->situacao);
+        $checkEtapa->execute();
+
+        if($dados->subetapa === '0') {
+            $this->finalizarSubEtapas($dados->id, $dados->situacao);
+        }
+
+    }
+
+    public function finalizarSubEtapas(string $id, string $situacao)
+    {
+        $checkSubEtapas = $this->sqlite->prepare('UPDATE etapas SET situacao = :situacao WHERE subetapa = :id');
+        $checkSubEtapas->bindParam(':id', $id);
+        $checkSubEtapas->bindParam(':situacao', $situacao);
+        $checkSubEtapas->execute();
     }
 }
 

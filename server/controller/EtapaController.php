@@ -9,7 +9,6 @@
 
     $etapa = new Etapa($db);
 
-    
     $action = (isset($_REQUEST['action'] )) ? $_REQUEST['action']  : '';
     
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -32,14 +31,22 @@
     }
 
     switch($action) {
-        // case 'editar': {
-        //     $projeto->editarProjeto($etapaDados);
-        //     redireciona('./index.php?id=' . $_POST['id']);
-        //     break;
-        // }
+        case 'deletar': {
+            $etapa->deletarEtapa($_POST['id']);
+            redireciona('./index.php?id=' . $_POST['idproj']);
+            break;
+        }
         case 'cadastrar': {
             $etapa->cadastrarEtapa($etapaDados);
             redireciona('./index.php?id=' . $etapaDados->projeto);
+            break;
+        }   
+        case 'atualizar': {
+           
+            $dados = json_decode($_POST['data']);
+
+            $etapa->finalizarEtapa($dados);
+            redireciona('./index.php?id=' . $dado->projeto);
             break;
         }   
     }
