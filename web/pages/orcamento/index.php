@@ -20,7 +20,7 @@
     <head>
         <?php require('../../assets/cmp/headInfo.php'); ?>
 
-        <!-- <link href="./stylePopup.css" rel="stylesheet" /> -->
+        <link href="./stylePopup.css" rel="stylesheet" />
 
         <title> Planej | Orçamento </title>
     </head>
