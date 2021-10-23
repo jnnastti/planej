@@ -26,16 +26,22 @@ function executeCheckin(target, listAttr) {
 
     var currentValue = target.value;
     var inValorTotal = document.querySelector('#valorTotal');
-    var btnSalvarObs = document.querySelector('#salvarObs');
 
+    
     if (values.indexOf(currentValue) !== -1) {
-        inValorTotal.readOnly = true;
-        btnSalvarObs.disabled = true;
-        btnSalvarObs.classList.add("noHover");
+        var valorTotal = document.getElementById(currentValue).textContent;
+        
+        inValorTotal.value = valorTotal.substr(valorTotal.indexOf('R$') + 2).trim()
     } else {
-        inValorTotal.readOnly = false;
-        btnSalvarObs.disabled = false;
-        btnSalvarObs.classList.remove("noHover");
-
+        inValorTotal.value = "";
     }
  }
+
+
+function calculaValorFaltante() {
+    var valorTotal = document.getElementById('valorTotal')
+    var valorRecebido = document.getElementById('valorRecebido')
+    var valorFaltante = document.getElementById('valorFaltante')
+
+    valorFaltante.value = valorTotal.value - valorRecebido.value;
+}

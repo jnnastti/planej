@@ -11,13 +11,18 @@ class Orcamento
 
     public function cadastrarOrcamento(object $orcamento)
     {
-        $idproj = $_SESSION['idProjAtivo'];
+        $idproj = $_SESSION['projAtivo'];
 
-        $insertOrcamento = $this->sqlite->prepare('INSERT INTO orcamento(iddestino, valor_recebido, valor_faltante, idproj) 
-                                                    VALUES(:iddestino, :valorR, :valorF, :proj);');
+        if(empty($orcamento->dataRegistro)) {
+            $orcamento->dataRegistro = date('Y-m-d');
+        }
+
+        $insertOrcamento = $this->sqlite->prepare('INSERT INTO orcamento(destino, valor, receber, data_registro, idproj) 
+                                                    VALUES(:iddestino, :valorR, :valorT, :dataR, :proj);');
         $insertOrcamento->bindParam(':iddestino', $orcamento->destino);
         $insertOrcamento->bindParam(':valorR', $orcamento->valorR);
-        $insertOrcamento->bindParam(':valorF', $orcamento->valorF);
+        $insertOrcamento->bindParam(':valorT', $orcamento->valorT);
+        $insertOrcamento->bindParam(':dataR', $orcamento->dataRegistro);
         $insertOrcamento->bindParam(':proj', $idproj);
 
         $insertOrcamento->execute();

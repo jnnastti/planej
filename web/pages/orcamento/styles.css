@@ -157,6 +157,6 @@
     width: 210px;
 }
 
-.noHover{
-    pointer-events: none;
+.obs {
+  width: 420px!important;
 }

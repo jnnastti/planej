@@ -7,8 +7,12 @@
     include('../../../server/src/Orcamento.php');
     include('../../../server/redirect.php');
 
+    if(!empty($_GET['id'])) {
+        $_SESSION['projAtivo'] = $_GET['id'];
+    }
+
     $orcamento = new Orcamento($db);
-    $itemOrcamento = $orcamento->listarOrcamento($_SESSION['idProjAtivo']);
+    $itemOrcamento = $orcamento->listarOrcamento($_SESSION['projAtivo']);
 
     $action = (isset($_REQUEST['action'] )) ? $_REQUEST['action']  : '';
 
@@ -17,7 +21,7 @@
     switch($action) {
         case 'deletar': {
             $orcamento->deletarOrcamento($_POST['id']);
-            redireciona('./index.php?id=' . $_SESSION['idProjAtivo']);
+            redireciona('./index.php?id=' . $_SESSION['projAtivo']);
             break;
         }
         case 'editar': {
@@ -33,11 +37,14 @@
         }
         case 'cadastrar': {
             $orcamentoDados = (object) array (
-                'destino' => $_POST['destino'],
-                'valorF' => $_POST['valorF'],
-                'valorR' => $_POST['valorR']
+                'destino' => $_POST['obs'],
+                'valorR' => $_POST['valorRecebido'],
+                'valorT' => $_POST['valorTotal'],
+                'dataRegistro' => $_POST['dataorcamento']
             );
+            // var_dump($orcamentoDados);
 
+            
             $orcamento->cadastrarOrcamento($orcamentoDados);
             redireciona('./index.php?id=' . $orcamentoDados->idorc);
             break;

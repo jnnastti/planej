@@ -27,8 +27,12 @@ function onCheckEtapa(idproj, idetapa) {
         type: 'POST',
         data: {data: JSON.stringify(dados)},
         success: function(response){
-            // Retorno se tudo ocorreu normalmente
-           this.onCheckSubEtapas(response);
+
+        //     $.get(`?id=${idproj}&action=atualizar`, function(data, status, xhr) {
+        //         console.log(data)
+        //     })
+        //     // Retorno se tudo ocorreu normalmente
+        //    this.onCheckSubEtapas(response);
         },
         error: function(jqXHR, textStatus, errorThrown) {
         // Retorno caso algum erro ocorra

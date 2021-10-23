@@ -23,12 +23,16 @@
     </div>
     <div class='item'>
         <fieldset>
-            <a href="../etapas/index.php?id=<?php echo $proj['idproj']; ?>"><button type='button' title='Etapas' onclick='etapaProjeto();'> ✓ </button>
+            <a href="../etapas/index.php?id=<?php echo $proj['idproj']; ?>">
+                <button type='button' title='Etapas'> ✓ </button>
+            </a>
         </fieldset>
     </div>
     <div class='item'> 
         <fieldset>
-            <button type='button' class='btnOrcamento' title='Orçamento' onclick='orcamentoProjeto();'> $ </button>
+            <a href="../orcamento/index.php?id=<?php echo $proj['idproj']; ?>">
+                <button type='button' class='btnOrcamento' title='Orçamento'> $ </button>
+            </a>
         </fieldset>
     </div>
     <div class='item'>
