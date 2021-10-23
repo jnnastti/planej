@@ -9,85 +9,50 @@ class Orcamento
         $this->sqlite = $sqlite;
     }
 
-    public function cadastrarOrcamento(string $valor, string $destino, string $receber): void
+    public function cadastrarOrcamento(object $orcamento)
     {
         $idproj = $_SESSION['idProjAtivo'];
 
-        $insertOrcamento = $this->sqlite->prepare('INSERT INTO orcamento(valor, destino, receber, idproj) VALUES(?, ?, ?, ?);');
-        $insertOrcamento->bindParam('ssss', $valor, $destino, $receber, $idproj);
+        $insertOrcamento = $this->sqlite->prepare('INSERT INTO orcamento(iddestino, valor_recebido, valor_faltante, idproj) 
+                                                    VALUES(:iddestino, :valorR, :valorF, :proj);');
+        $insertOrcamento->bindParam(':iddestino', $orcamento->destino);
+        $insertOrcamento->bindParam(':valorR', $orcamento->valorR);
+        $insertOrcamento->bindParam(':valorF', $orcamento->valorF);
+        $insertOrcamento->bindParam(':proj', $idproj);
+
         $insertOrcamento->execute();
-
-        $this->cadastrarHistorico();
     }
 
-    public function cadastrarHistorico(): void
+    public function listarOrcamento(string $id)
     {
-        // pegar ultimo insert
-        $selectOrcamento = $this->sqlite->query('SELECT * FROM historico LIMIT 0, 1');
-        $orcamento = $selectOrcamento->fetchArray();
-
-        $insertHistorico = $this->sqlite->prepare('INSERT INTO historico(destino, valor, datarecebimento, idorc) VALUES(?, ?, ?);');
-        $insertHistorico->bindParam('ssss', $orcamento['destino'], $orcamento['valor'], $orcamento['datarecebimento'], $orcamento['idorc']);
-        $insertHistorico->execute();
-    }
-
-    public function listarOrcamento(string $id): array
-    {
-        $selectOrcamento = $this->sqlite->prepare('SELECT * FROM orcamento WHERE idproj = ?');
-        $selectOrcamento->bindParam('s', $id);
+        $selectOrcamento = $this->sqlite->prepare('SELECT * FROM orcamento WHERE idproj = :projeto');
+        $selectOrcamento->bindParam(':projeto', $id);
         
-        $orcamento = $selectOrcamento->execute()->fetchArray();
+        $orcamento = $selectOrcamento->execute();
 
         return $orcamento;
     }
 
-    public function listarHistorico(string $id): array
+    public function deletarOrcamento(string $id)
     {
-        $selectHistorico = $this->sqlite->prepare('SELECT historico.*, orcamento.destino FROM historico 
-                                                   INNER JOIN orcamento ON orcamento.idorc = historico.idorc 
-                                                   WHERE orcamento.idproj = ? ORDER BY historico.datarecebimento DESC');
-        $selectHistorico->bindParam('s', $id);
-        
-        $historico = $selectHistorico->execute()->fetchArray();
+        $deleteOrcamento = $this->sqlite->prepare('DELETE FROM orcamento WHERE idorc = :id');
+        $deleteOrcamento->bindParam(':id', $id);
 
-        return $historico;
-    }
-
-    public function deletarOrcamento(string $id): void
-    {
-        $deleteOrcamento = $this->sqlite->prepare('DELETE FROM orcamento WHERE idorc = ?');
-        $deleteOrcamento->bindParam('s', $id);
         $deleteOrcamento->execute();
     }
 
-    public function deletarHistorico(string $id): void
+    public function editarOrcamento(object $orcamento)
     {
-        $deleteHistorico = $this->sqlite->prepare('DELETE FROM historico WHERE idorc = ?');
-        $deleteHistorico->bindParam('s', $id);
-        $deleteHistorico->execute();
+        $updateOrcamento = $this->sqlite->prepare('UPDATE orcamento SET 
+                                                    valor_recebido = :valorR, 
+                                                    valor_faltante = :valorF 
+                                                   WHERE idorc = ?');
 
-        $this->deletarOrcamento($id);
-    }
+        $updateOrcamento->bindParam(':idorc', $orcamento->idorc);
+        $updateOrcamento->bindParam(':valorR', $orcamento->valorR);
+        $updateOrcamento->bindParam(':valorF', $orcamento->valorF);
 
-    public function editarOrcamento(string $id, string $destino, string $valor, string $receber): void
-    {
-        $updateOrcamento = $this->sqlite->prepare('UPDATE orcamento SET receber = ?, destino = ?, valor = ? WHERE idorc = ?');
-        $updateOrcamento->bindParam('ssss', $receber, $destino, $valor, $id);
         $updateOrcamento->execute();
-
-        $selectOrcamentoEditado = $this->sqlite->prepare('SELECT * FROM orcamento WHERE idorc = ?');
-        $selectOrcamentoEditado->bindParam('s', $id);
-        
-        $orcamentoEditado = $selectOrcamentoEditado->execute()->fetchArray();
-
-        $this->editarHistorico($orcamentoEditado);
-    }
-
-    public function editarHistorico(array $orcamentoEditado): void
-    {
-        $updateHistorico = $this->sqlite->prepare('INSERT INTO historico(destino, valor, datarecebimento, idorc) VALUES(?, ?, ?);');
-        $updateHistorico->bindParam('ssss', $orcamentoEditado['destino'], $orcamentoEditado['valor'], $orcamentoEditado['datarecebimento'], $orcamentoEditado['idorc']);
-        $updateHistorico->execute();
     }
 }
 ?>

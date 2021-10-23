@@ -1,0 +1,162 @@
+/* msg */
+.msg {
+	text-align: left;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+
+/* orcamento */
+.items {
+    text-align: left;
+    display: flex;
+    width: 90%;
+    margin-bottom: 5px;
+}
+
+.item:nth-child(1) {
+    width: 50%;
+}
+
+.item input {
+    width: 90%;
+}
+
+#valor_recebido {
+    border: 1px solid #2ec72e;
+}
+
+#valor_receber {
+    border: 1px solid #f52323;
+}
+
+.orcamento fieldset {
+	border: none;
+	padding: 0;
+	margin: 10px 5px;
+	position: relative; 
+}
+
+.orcamento fieldset input {
+	width: 100%;
+	height: 45px;
+	background: #e1e5f22c;
+    border-radius: 8px;
+    border: 0;
+    padding: 12px 24px;
+	color: #f4f4f4;
+}
+  
+.orcamento button {
+    width: 40px;
+    height: 40px;
+    margin-top: 1px;
+	border-radius: 8px;
+	outline: none!important;
+	background: linear-gradient(43deg, 
+		rgba(182,95,173,1) 0%, 
+		rgba(182,95,135,1) 14%, 
+		rgba(191,66,89,1) 36%, 
+		rgba(158,11,26,1) 71%, 
+		rgba(226,130,12,1) 96%);
+	border: none;
+	cursor: pointer;
+	color: #f4f4f4;
+	transition: all 0.4s;
+}
+
+.orcamento button:hover {
+	filter: brightness(150%);
+	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.493);
+}
+
+/*close button */
+.orcamento div .close-container{
+  position: relative;
+  margin-left: auto;
+  margin-top: 30px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.orcamento div .leftright{
+  height: 4px;
+  width: 30px;
+  position: absolute;
+  background-color: rgba(226,130,12,1);
+  border-radius: 2px;
+  transform: rotate(45deg);
+  transition: all .3s ease-in;
+  padding: 0;
+}
+
+.orcamento div .rightleft{
+  height: 4px;
+  width: 30px;
+  position: absolute;
+  background-color: rgba(226,130,12,1);
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  transition: all .3s ease-in;
+  padding: 0;
+}
+
+.orcamento div .close{
+  margin: 60px 0 0 5px;
+  position: absolute;
+}
+
+.orcamento div .close-container:hover .leftright{
+  transform: rotate(-45deg);
+  background-color: rgba(158,11,26,1);
+}
+.orcamento div .close-container:hover .rightleft{
+  transform: rotate(45deg);
+  background-color: rgba(158,11,26,1);
+}
+
+
+/* btn adicionar */
+.adicionar {
+    background: linear-gradient(43deg, 
+		rgba(182,95,173,1) 0%, 
+		rgba(182,95,135,1) 14%, 
+		rgba(191,66,89,1) 36%, 
+		rgba(158,11,26,1) 71%, 
+		rgba(226,130,12,1) 96%);
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0px 5px 20px 5px rgba(146, 146, 146, 0.35);
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 100px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.adicionar img {
+    width: 45px;
+    height: 45px;
+}
+
+.adicionar:hover {
+	filter: brightness(150%);
+	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.493);
+}
+
+.modalDialog form .item button {
+    height: 40px!important;
+    margin-top: 25px!important;
+    width: 190px;
+}
+
+.modalDialog form .item {
+    width: 210px;
+}
+
+.noHover{
+    pointer-events: none;
+}
