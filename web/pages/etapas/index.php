@@ -1,16 +1,18 @@
 <?php
 
-    session_start();
-    require_once('../../../server/controller/EtapaController.php');
+    include('../../../server/redirect.php');
 
-    if(empty($_SESSION['usuarioLogin'])) {
+    session_start();
+    
+    if(!isset($_SESSION['usuarioLogin'])) {
         redireciona('../login/login.php');
     }
-
-    if(empty($_SESSION['empAtiva'])) {
+    
+    if(!isset($_SESSION['empAtiva'])) {
         redireciona('../empresas/index.php');
     }
-
+    
+    require_once('../../../server/controller/EtapaController.php');
 ?>
 
 <html>

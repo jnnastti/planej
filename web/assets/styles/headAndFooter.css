@@ -61,10 +61,15 @@
 	transition: 0.3s linear all;
 	user-select: none;
 }
-.slider-menu > li:hover {
+.slider-menu > li a:hover {
 	color: rgba(226, 130, 12, 1);
 }
 
+.slider-menu a {
+	text-decoration: none;
+	color: #f4f4f4;
+	transition: 0.3s linear all;
+}
 /* footer */
 footer {
     padding: 15;

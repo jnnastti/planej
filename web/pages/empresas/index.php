@@ -1,11 +1,17 @@
 <?php
 
-    session_start();
-    require_once('../../../server/controller/EmpresaController.php');
+    include('../../../server/redirect.php');
 
-    if(empty($_SESSION['usuarioLogin'])) {
+    session_start();
+
+    unset($_SESSION['empAtiva']);
+
+    if(!isset($_SESSION['usuarioLogin'])) {
         redireciona('../login/login.php');
     }
+
+    require_once('../../../server/controller/EmpresaController.php');
+
 ?>
 
 <html>

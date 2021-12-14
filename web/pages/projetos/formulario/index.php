@@ -1,16 +1,18 @@
 <?php
 
+    include('../../../../server/redirect.php');
+
     session_start();
 
-    require_once('../../../../server/controller/ProjetoFormController.php');
-
-    if(empty($_SESSION['usuarioLogin'])) {
+    if(!isset($_SESSION['usuarioLogin'])) {
         redireciona('../../login/login.php');
     }
-
-    if(empty($_SESSION['empAtiva'])) {
+    
+    if(!isset($_SESSION['empAtiva'])) {
         redireciona('../../empresas/index.php');
     }
+
+    require_once('../../../../server/controller/ProjetoFormController.php');
     
 ?>
 
