@@ -11,6 +11,10 @@
     if(!isset($_SESSION['empAtiva'])) {
         redireciona('../empresas/index.php');
     }
+
+    if(!isset($_GET['id'])) {
+        redireciona('../projetos/index.php');
+    }
     
     require_once('../../../server/controller/EtapaController.php');
 ?>
