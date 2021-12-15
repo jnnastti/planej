@@ -65,7 +65,7 @@
                     <h2>Deseja excluir esse orçamento?</h2>
                     <p>Uma vez deletado, todos os dados relacionados ao mesmo serão apagados e não poderão mais ser recuperados.</p>
 
-                    <form method="POST" action="./index.php?action=deletar">
+                    <form method="POST" action="./index.php?id=<?= $_SESSION['projAtivo'];?>&action=deletar">
                         <fieldset class="btn">
                             <input type="hidden" name="id" value="<?= $_GET['idorc']; ?>">
                             <a href="#"><button type="button" class="btnSecundario"> Cancelar </button></a>

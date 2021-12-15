@@ -24,7 +24,7 @@
     
     
     <div class='item'>
-        <a href="?idorc=<?= $orc['idorc'];?>#deletarModal">
+        <a href="?id=<?= $_SESSION['projAtivo'];?>&idorc=<?= $orc['idorc'];?>#deletarModal">
             <div class="close-container">
                 <div class="leftright"></div>
                 <div class="rightleft"></div>

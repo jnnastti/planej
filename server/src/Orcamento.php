@@ -44,10 +44,37 @@ class Orcamento
 
     public function deletarOrcamento(string $id)
     {
+        $this->deletarOrcamentoHistorico($id);
+
         $deleteOrcamento = $this->sqlite->prepare('DELETE FROM orcamento WHERE idorc = :id');
         $deleteOrcamento->bindParam(':id', $id);
 
         $deleteOrcamento->execute();
+    }
+
+    private function deletarOrcamentoHistorico(string $id)
+    {
+        $orcamento = $this->selecionarOrcamento($id);
+
+        $deleteOrcamento = $this->sqlite->prepare('DELETE FROM orcamento_historico 
+                                                    WHERE destino = :destino
+                                                      AND idproj = :projeto');
+
+        $deleteOrcamento->bindParam(':destino', $orcamento['destino']);
+        $deleteOrcamento->bindParam(':projeto', $orcamento['idproj']);
+
+        $deleteOrcamento->execute();
+    }
+
+    private function selecionarOrcamento( int $id)
+    {
+        $selectOrcamento = $this->sqlite->prepare('SELECT * FROM orcamento
+                                                    WHERE idorc = :id');
+        $selectOrcamento->bindParam(':id', $id);
+        
+        $orcamento = $selectOrcamento->execute()->fetchArray();
+
+        return $orcamento;
     }
 
     public function editarOrcamento(object $orcamento)
