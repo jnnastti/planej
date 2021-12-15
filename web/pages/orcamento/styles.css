@@ -14,6 +14,12 @@
     margin-bottom: 5px;
 }
 
+.historico {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
 .item:nth-child(1) {
     width: 50%;
 }
@@ -159,4 +165,19 @@
 
 .obs {
   width: 420px!important;
+}
+.listHistorico {
+  background-color: #ececec;
+  border-radius: 20px;
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.listHistorico .items .item {
+  width: 25%;
+}
+
+.listHistorico .items .item:first-child {
+  width: 50%;
 }

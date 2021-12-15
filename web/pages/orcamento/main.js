@@ -32,8 +32,12 @@ function executeCheckin(target, listAttr) {
         var valorTotal = document.getElementById(currentValue).textContent;
         
         inValorTotal.value = valorTotal.substr(valorTotal.indexOf('R$') + 2).trim()
+
+        isSelecionado = true
     } else {
         inValorTotal.value = "";
+
+        isSelecionado = false
     }
  }
 
@@ -42,6 +46,15 @@ function calculaValorFaltante() {
     var valorTotal = document.getElementById('valorTotal')
     var valorRecebido = document.getElementById('valorRecebido')
     var valorFaltante = document.getElementById('valorFaltante')
+    
+    if(isSelecionado) {
+        var nome = document.getElementById('obs').value;
+        var valorAnterior = document.getElementById(`valor_recebido${nome}`)
 
-    valorFaltante.value = valorTotal.value - valorRecebido.value;
+        valorAnterior = valorAnterior.value.substr(2).trim()
+    } else {
+        var valorAnterior = 0
+    }
+    
+    valorFaltante.value = valorTotal.value - (parseInt(valorRecebido.value) + parseInt(valorAnterior));
 }

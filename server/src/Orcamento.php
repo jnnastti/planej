@@ -30,7 +30,11 @@ class Orcamento
 
     public function listarOrcamento(string $id)
     {
-        $selectOrcamento = $this->sqlite->prepare('SELECT * FROM orcamento WHERE idproj = :projeto');
+        $selectOrcamento = $this->sqlite->prepare('SELECT orcamento.*, SUM(orcamento_historico.valor) AS soma
+                                                    FROM orcamento, orcamento_historico 
+                                                    WHERE orcamento.idproj = :projeto
+                                                    AND orcamento.destino = orcamento_historico.destino
+                                                    GROUP BY orcamento.destino');
         $selectOrcamento->bindParam(':projeto', $id);
         
         $orcamento = $selectOrcamento->execute();
@@ -58,6 +62,21 @@ class Orcamento
         $updateOrcamento->bindParam(':valorF', $orcamento->valorF);
 
         $updateOrcamento->execute();
+    }
+
+    public function listarHistorico(string $Nome, int $projeto)
+    {
+        $selectOrcamentoHistorico = $this->sqlite->prepare('SELECT * FROM orcamento_historico 
+                                                            WHERE idproj = :projeto
+                                                            AND   destino = :nome
+                                                            ORDER BY data_registro DESC');
+
+        $selectOrcamentoHistorico->bindParam(':projeto', $projeto);
+        $selectOrcamentoHistorico->bindParam(':nome', $Nome);
+        
+        $orcamento = $selectOrcamentoHistorico->execute();
+
+        return $orcamento;
     }
 }
 ?>

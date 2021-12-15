@@ -12,7 +12,7 @@
         redireciona('../empresas/index.php');
     }
     
-    if(!isset($_SESSION['projAtivo'])) {
+    if(!isset($_GET['id'])) {
         redireciona('../projetos/index.php');
     }
     
@@ -85,7 +85,8 @@
                     </a>
                     <h2>Cadastrar orçamento</h2>
 
-                    <form method="POST" action="./index.php?action=cadastrar">
+                    <form method="POST" action="./index.php?id=<?= $_SESSION['projAtivo'];?>&action=cadastrar">
+                        <input type="hidden" name="projeto" value="<?= $_SESSION['projAtivo']; ?>"/>
                         <div class="items">
                             <div class="item obs">
                                 <fieldset>
@@ -147,6 +148,38 @@
                         <img src="../../assets/imgs/add.svg">
                     </button>
                 </a>
+            </div>
+
+            <div id="historico" class="modalDialog">
+                <div>
+                    <a href="#" title="Close" class="close">
+                        <div class="close-container">
+                            <div class="leftright"></div>
+                            <div class="rightleft"></div>
+                        </div>
+                    </a>
+                    <h2>Historico</h2>
+
+                    <div class="listHistorico">
+                        <div class="items">
+                            <div class="item"><b> Nome </b> </div>
+                            <div class="item"><b> Valor </b> </div>
+                            <div class="item"><b> Data </b> </div>
+                        </div>
+
+                        <?php 
+                            if(isset($historico)) :
+                                while($hist = $historico->fetchArray()): ?>
+                                <div class="items">
+                                    <div class="item"> <?= $hist['destino']; ?> </div>
+                                    <div class="item"> <?= $hist['valor']; ?> </div>
+                                    <div class="item"> <?= $hist['data_registro']; ?> </div>
+                                </div>
+                        <?php   
+                                endwhile;
+                            endif; ?>
+                    </div>
+                </div>
             </div>
         </main>
 

@@ -1,5 +1,6 @@
 <div class='orcamento items' id="orcamento">
-                        
+         
+    <a class="historico" href="?id=<?= $orc['idproj'];?>&idorc=<?= $orc['destino']; ?>#historico">
     <div class='item'>
         <fieldset>
             <input type='text' value='<?= $orc['destino']; ?>' name='descricao' readOnly>
@@ -12,7 +13,7 @@
     </div>
     <div class='item'>
         <fieldset>
-            <input type='text' id='valor_recebido' value='R$ <?= $orc['valor']; ?>' name='valor_recebido' readOnly>
+            <input type='text' id='valor_recebido<?= $orc['destino']; ?>' value='R$ <?= $orc['soma']; ?>' name='valor_recebido' readOnly>
         </fieldset>
     </div>
     <div class='item'>
