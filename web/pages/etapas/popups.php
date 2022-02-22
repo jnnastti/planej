@@ -10,7 +10,7 @@
         <h2>Deseja excluir essa etapa?</h2>
         <p>Uma vez deletada, todos os dados relacionados a mesma serão apagados e não poderão mais ser recuperados.</p>
 
-        <form method="POST" action="./index.php?action=deletar">
+        <form method="POST" action="./index.php?id=<?= $_GET['id']; ?>&action=deletar">
             <input type="hidden" name="id" value="<?php echo $_GET['idetapa']; ?>">
             <input type="hidden" name="idproj" value="<?php echo $_GET['id']; ?>">
             <fieldset class="btn">
@@ -31,7 +31,7 @@
         </a>
         <h2>Cadastrar etapa</h2>
 
-        <form method="POST" action="./index.php?action=cadastrar">
+        <form method="POST" action="./index.php?id=<?= $_GET['id']; ?>&action=cadastrar">
             <input type="hidden" name="projeto" value="<?php echo $_GET['id']; ?>">
             <fieldset>
                 <input type="text" name="descricao" placeholder="Etapa" />

@@ -7,17 +7,37 @@
 
 
 /* orcamento */
-.items {
+.itorc {
     text-align: left;
-    display: flex;
-    width: 90%;
+    display: grid;
+    grid-template-columns: 95% 5%;
     margin-bottom: 5px;
 }
 
-.historico {
-  width: 100%;
+.items {
+  text-align: left;
   display: flex;
-  flex-direction: row;
+  width: 90%;
+  margin-bottom: 5px;
+}
+
+.hh input{
+  cursor: pointer;
+}
+
+.it {
+  display:  grid;
+  grid-template-columns: 50%  16% 16% 15%;
+}
+
+.hsit {
+  display: grid;
+  grid-template-columns: 40% 30% 30%;
+}
+
+.titulogrid {
+  margin: 0px 10px;
+  width: 95%;
 }
 
 .item:nth-child(1) {
@@ -49,7 +69,7 @@
 	background: #e1e5f22c;
     border-radius: 8px;
     border: 0;
-    padding: 12px 24px;
+    padding: 12px 3px 12px 24px;
 	color: #f4f4f4;
 }
   
