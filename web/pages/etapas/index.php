@@ -11,144 +11,109 @@
     if(!isset($_SESSION['empAtiva'])) {
         redireciona('../empresas/index.php');
     }
-    
+
     if(!isset($_GET['id'])) {
         redireciona('../projetos/index.php');
     }
     
-    require_once('../../../server/controller/OrcamentoController.php');
+    require_once('../../../server/controller/EtapaController.php');
 ?>
 
 <html>
     <head>
         <?php require('../../assets/cmp/headInfo.php'); ?>
 
+        <link href="../../assets/styles/formStyle.css" rel="stylesheet" />
         <link href="./stylePopup.css" rel="stylesheet" />
 
-        <title> Planej | Orçamento </title>
+        <title> Planej | Etapas do projeto </title>
     </head>
-
     <body>
         <?php require('../../assets/cmp/header.php'); ?>
 
-        <main>
+        <main class="container">
             <section class="msg grid-8">
-                <h1> Orçamento do projeto </h1>
+                <h1> Etapas do projeto </h1>
                 <p> 
-                    Atualize o orçamento e gastos do seu projeto para ter um controle financeiro mais exato.
+                    Deixe seu projeto ainda mais organizado e deixe todas as etapas 
+                    registradas aqui para poder acompanhar seu desempenho até sua conclusão.
                 </p>
             </section>
-            <section  class="grid-12">
-                <div>
-                    <h3> últimos orçamentos </h3>
 
-                    <div class="it titulogrid">
-                        <h4> Nome </h4>
-                        <h4> Data do registro </h4>
-                        <h4> Total pago </h4>
-                        <h4> Total a ser recebido </h4>
+            <section class="grid-12">
+                <h3> Etapas registradas </h3>
+
+                <?php while($etp = $etapas->fetchArray()) : ?>
+
+                <div id="checklist" class="grid-12">
+                    <input 
+                        class="pri" 
+                        id="<?php echo $etp['idetapa'];?>" 
+                        type="checkbox" 
+                        name="r" 
+                        value="<?php echo $etp['idetapa'];?>" 
+                        onchange="onCheckEtapa(<?php echo $_GET['id'] ?>, <?php echo $etp['idetapa'];?>)"
+                        
+                        <?php
+                            if($etp['situacao'] == 'F') {
+                                echo "checked";
+                            }
+                        ?>
+                    >
+
+                    <label for="<?php echo $etp['idetapa'];?>" class="pri">
+                        <? echo $etp['descricao']; ?>
+                    </label>
+                        
+                    <label> <?php echo $etp['responsavel'];?></label>
+                    <input type="date" value="<?php echo $etp['data_inicio']?>" readonly />
+                    <p> - </p>
+                    <input type="date" value="<?php echo $etp['data_final']?>" readonly />
+                    
+                    <button type="button" class="btnPrincipal" onclick="onMostraSubEtapas(<?php echo $etp['idetapa']; ?>)"> v </button>
+                    
+                    <a href="?id=<?php echo $_GET['id']; ?>&idetapa=<?php echo $etp['idetapa']; ?>#deletarModal" title="Close" class="close">
+                        <div class="close-container">
+                            <div class="leftright"></div>
+                            <div class="rightleft"></div>
+                        </div>
+                    </a>
+
+                    <div id="collapse<?php echo $etp['idetapa']; ?>" class="collapse">
+                        <?php 
+                        $subEtapas = $etapa->listarSubEtapas($etp['idetapa'], $idproj);
+
+                        while($subEtp = $subEtapas->fetchArray()) : ?>
+                        <input 
+                            class="sec"
+                            id="<?php echo $subEtp['idetapa']; ?>" 
+                            type="checkbox" 
+                            name="r" 
+                            value="<?php echo $subEtp['idetapa']; ?>" 
+                            onchange="onCheckEtapa(<?php echo $_GET['id'] ?>, <?php echo $subEtp['idetapa'];?>)"
+
+                            
+                            <?php
+                                if($etp['situacao'] == 'F' || $subEtp['situacao'] == 'F') {
+                                    echo "checked";
+                                }
+                            ?>>
+                        <label for="<?php echo $subEtp['idetapa']; ?>" class="sec">
+                            <?php echo $subEtp['descricao']; ?>
+                        </label>
+
+                        <label> <?php echo $subEtp['responsavel'];?></label>
+                        <input type="date" value="<?php echo $subEtp['data_inicio']?>" readonly />
+                        <p> - </p>
+                        <input type="date" value="<?php echo $subEtp['data_final']?>" readonly />
+
+                        <?php endwhile; ?>
                     </div>
-
-                    <?php 
-                        while($orc = $itemOrcamento->fetchArray()) {
-
-                            include('./orcamentoInfo.php');
-                            $contador++;
-                        }
-                    ?>
                 </div>
-
-                
+                <?php endwhile; ?>
             </section>
 
-            <!-- popup de deletar -->
-            <div id="deletarModal" class="modalDialog">
-                <div>
-                    <a href="#" title="Close" class="close">
-                        <div class="close-container">
-                            <div class="leftright"></div>
-                            <div class="rightleft"></div>
-                        </div>
-                    </a>
-                    <h2>Deseja excluir esse orçamento?</h2>
-                    <p>Uma vez deletado, todos os dados relacionados ao mesmo serão apagados e não poderão mais ser recuperados.</p>
-
-                    <form method="POST" action="./index.php?id=<?= $_SESSION['projAtivo'];?>&action=deletar">
-                        <fieldset class="btn">
-                            <input type="hidden" name="id" value="<?= $_GET['idorc']; ?>">
-                            <a href="#"><button type="button" class="btnSecundario"> Cancelar </button></a>
-                            <button type="submit"> Deletar </button>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-
-            <div id="cadastrarModal" class="modalDialog">
-                <div>
-                    <a href="#" title="Close" class="close">
-                        <div class="close-container">
-                            <div class="leftright"></div>
-                            <div class="rightleft"></div>
-                        </div>
-                    </a>
-                    <h2>Cadastrar orçamento</h2>
-
-                    <form method="POST" action="./index.php?id=<?= $_SESSION['projAtivo'];?>&action=cadastrar">
-                        <input type="hidden" name="projeto" value="<?= $_SESSION['projAtivo']; ?>"/>
-                        <div class="items">
-                            <div class="item obs">
-                                <fieldset>
-                                    <label> Observação: </label>
-                                    <input list="observacao" name="obs" id="obs" />
-                                    <datalist id="observacao">
-                                        <?php while($op = $itemOrcamento->fetchArray()) : ?>
-                                            <option value="<?= $op['destino']; ?>">
-                                                <?= $op['destino']; ?> - 
-                                                <span id="<?= $op['destino']; ?>">
-                                                    R$ <?= $op['receber'];?>
-                                                </span>
-                                            </option>
-                                        <?php endwhile; ?>
-                                    </datalist>
-                                </fieldset>
-                            </div>
-                            <div class="item">
-                                <fieldset>
-                                
-                                    <label> Data: </label>
-                                    <input type="date" name="dataorcamento" />
-                                </fieldset>
-                            </div>
-                        </div>
-
-                        <div class="items">
-                            <div class="item">
-                                <fieldset>
-                                    <label> Valor total: </label>
-                                    <input type="text" name="valorTotal" id="valorTotal" />
-                                </fieldset>
-                            </div>
-                            <div class="item">
-                                <fieldset>
-                                <label> Valor recebido: </label>
-                                    <input type="text" id="valorRecebido" name="valorRecebido" onchange="calculaValorFaltante()" />
-                                </fieldset>
-                            </div>
-                            <div class="item">
-                                <fieldset>
-                                <label> Valor faltante: </label>
-                                    <input type="text" id="valorFaltante" name="valorFaltante" readonly/>
-                                </fieldset>
-                            </div>
-                        </div>
-
-                        <fieldset class="btn">
-                            <a href="#"><button type="button" class="btnSecundario"> Cancelar </button></a>
-                            <button type="submit" class="btnPrincipal"> Cadastrar </button>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
+            <?php require('./popups.php'); ?>
 
             <div>
                 <a href="#cadastrarModal">
@@ -157,41 +122,14 @@
                     </button>
                 </a>
             </div>
-
-            <div id="historico" class="modalDialog">
-                <div>
-                    <a href="#" title="Close" class="close">
-                        <div class="close-container">
-                            <div class="leftright"></div>
-                            <div class="rightleft"></div>
-                        </div>
-                    </a>
-                    <h2>Historico</h2>
-
-                    <div class="listHistorico">
-                        <div class="hsit">
-                            <div><b> Nome </b> </div>
-                            <div><b> Valor </b> </div>
-                            <div><b> Data </b> </div>
-                        </div>
-
-                        <?php 
-                            if(isset($historico)) :
-                                while($hist = $historico->fetchArray()): ?>
-                                <div class="hsit">
-                                    <div> <?= $hist['destino']; ?> </div>
-                                    <div> <?= $hist['valor']; ?> </div>
-                                    <div> <?= $hist['data_registro']; ?> </div>
-                                </div>
-                        <?php   
-                                endwhile;
-                            endif; ?>
-                    </div>
-                </div>
-            </div>
         </main>
 
-        <?php require('../../assets/cmp/footer.php'); ?>
+        <footer>
+            <div>
+                <p> Desenvolvido por: jnnastti </p>
+            </div>
+        </footer>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="./main.js"></script>
 </html>
